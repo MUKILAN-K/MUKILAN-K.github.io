@@ -1,136 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mukilan K - Portfolio</title>
+    <title>Mukilan Portfolio</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <header>
-        <h1>MUKILAN PORTFOLIO</h1>
-        <p>AI & Data Science Enthusiast</p>
+        <div class="header-content">
+            <h1>I AM MUKILAN</h1>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="showSection('summary')">Home</a></li>
+                    <li><a href="#" onclick="showSection('skills')">Skills</a></li>
+                    <li><a href="#" onclick="showSection('education')">Education</a></li>
+                    <li><a href="#" onclick="showSection('certifications')">Certifications</a></li>
+                    <li><a href="#" onclick="showSection('projects')">Projects</a></li>
+                    <li><a href="#" onclick="showSection('awards')">Awards</a></li>
+                    <li><a href="#" onclick="showSection('goals')">Goals</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-
-
-    <section id="summary">
+    <section id="summary" class="content-section">
         <h2>Professional Summary</h2>
         <p>A passionate and dedicated second-year B.Tech student specializing in Artificial Intelligence and Data Science, with a keen interest in innovating within the agricultural sector. Proficient in C, Python, and SQL, and fluent in Tamil and English with basic proficiency in Japanese. Committed to leveraging AI and data science to drive meaningful advancements in agriculture.</p>
     </section>
 
-    <section id="education">
-        <h2>Education</h2>
-        <h3>K Ramakrishnan College of Technology</h3>
-        <p><strong>B.Tech in Artificial Intelligence and Data Science</strong> (2023 - Present)</p>
-        <ul>
-            <li><strong>1st Semester CGPA:</strong> 8.74</li>
-            <li><strong>2nd Semester CGPA:</strong> 8.54</li>
-            <li><strong>Overall CGPA:</strong> 8.64</li>
-        </ul>
-
-        <h3>St Antony's Higher Secondary School</h3>
-        <p><strong>12th Grade</strong></p>
-        <ul>
-            <li><strong>Marks:</strong> 519/600</li>
-            <li><strong>Cutoff Mark:</strong> 170.5/200</li>
-        </ul>
-    </section>
-
-    <section id="skills">
+    <section id="skills" class="content-section" style="display:none;">
         <h2>Skills</h2>
         <ul>
-            <li><strong>Programming Languages:</strong> C, Python, SQL</li>
-            <li><strong>Software:</strong> Basic knowledge of Blender, Figma, and Canva</li>
-            <li><strong>Languages:</strong> Tamil (Fluent), English (Fluent), Japanese (Basic)</li>
+            <li>C, Python, SQL</li>
+            <li>Blender, Figma, Canva</li>
+            <li>Tamil (Fluent), English (Fluent), Japanese (Basic)</li>
         </ul>
     </section>
 
-    <section id="certifications">
-        <h2>Certifications</h2>
+    <section id="education" class="content-section" style="display:none;">
+        <h2>Education</h2>
+        <p>2023 - Present: B.Tech in Artificial Intelligence and Data Science, K Ramakrishnan College of Technology</p>
+        <p>Higher Secondary Education: St Antony's Higher Secondary School (Cutoff: 170.5/200)</p>
+    </section>
+
+    <section id="certifications" class="content-section" style="display:none;">
+        <h2>Certifications and Training</h2>
         <ul>
-            <li>Programming Essentials – Simplilearn</li>
-            <li>MySQL – Simplilearn</li>
-            <li>Python for Data Science – Simplilearn</li>
-            <li>C Programming Language – Great Learning</li>
+            <li>Programming Essential (Simplilearn)</li>
+            <li>MySQL (Simplilearn)</li>
+            <li>Python for Data Science (Simplilearn)</li>
+            <li>C Programming Language (Great Learning)</li>
         </ul>
     </section>
 
-    <section id="projects">
+    <section id="projects" class="content-section" style="display:none;">
         <h2>Projects</h2>
         <ul>
-            <li><strong>Design Thinking and Innovation in Rainwater Harvesting Systems:</strong> Collaborated on optimizing rainwater harvesting using AI and data analysis.</li>
-            <li><strong>Security System Case Study:</strong> Developed a comprehensive case study on security systems, though not copyrighted.</li>
-            <li><strong>Automatic Street Light System Case Study:</strong> Created a case study on automatic street light systems, though not copyrighted.</li>
-            <li><strong>World Country Find (Fun App):</strong> Developed a Python game for children to identify countries on a map, aimed at educational engagement, though not copyrighted.</li>
+            <li>Security System and Automatic Street Light Case Study</li>
+            <li>Fun App for Children: World Country Find (Python)</li>
+            <li>Online Car Rental Platform: Created a platform for car rental services with features for booking management, user authentication, and data handling using Python.</li>
+            <li>ScienceQtech Employee Performance Mapping: Analyzed and mapped employee performance data with SQL queries for performance evaluation and reporting.</li>
         </ul>
     </section>
 
-    <section id="awards">
-        <h2>Certifications and Awards 🏆</h2>
+    <section id="awards" class="content-section" style="display:none;">
+        <h2>Awards and Competitions</h2>
         <ul>
-            <li>Science Club Competition: 1st Prize for using Blender software</li>
-            <li>Tech Expo: 1st Prize for Automatic Street Light System</li>
-            <li>UI/UX Competition: 2nd Prize</li>
-            <li>Ramanujan Day Paper Presentation: 2nd Prize</li>
+            <li>🏆 1st Prize in Science Club Competition (Blender Software)</li>
+            <li>🏆 1st Prize in Tech Expo (Automatic Street Light System)</li>
+            <li>🏆 2nd Prize in UI/UX Design</li>
+            <li>🏆 2nd Prize in Paper Presentation on Ramanujan Day</li>
         </ul>
     </section>
 
-    <section id="personal-interests">
-        <h2>Personal Interests</h2>
-        <ul>
-            <li><strong>Innovating in Agriculture:</strong> Passionate about developing new technologies and methodologies to improve agricultural practices and sustainability.</li>
-            <li><strong>Languages and Culture:</strong> Enjoy learning new languages and exploring different cultures.</li>
-        </ul>
-    </section>
-
-    <section id="goals">
+    <section id="goals" class="content-section" style="display:none;">
         <h2>Goals</h2>
-        <h3>Short-Term Goal</h3>
-        <p>To work under a professional in the agriculture field to gain insights into agricultural practices and contribute to innovative solutions that align with my long-term goal.</p>
-
-        <h3>Long-Term Goal</h3>
-        <p>To create groundbreaking innovations in the agricultural context, leveraging advanced technologies to solve critical challenges and enhance productivity and sustainability in farming practices.</p>
+        <p><strong>Short-Term Goal:</strong> To work under a professional in the agriculture field to gain knowledge and innovate for my long-term goal.</p>
+        <p><strong>Long-Term Goal:</strong> To create groundbreaking innovations in the agricultural context, leveraging advanced technologies to solve critical challenges and enhance productivity and sustainability in farming practices.</p>
     </section>
-
-    <section id="contact">
-        <h2>Contact Information</h2>
-        <ul>
-            <li>
-                <a href="mailto:mukilankumanan2005@gmail.com">
-                    <img src="C:\Users\mukil\OneDrive\Desktop\porfolio mukilan\icon\email.png " height="50px" width="50 px" alt="Email" class="icon">
-                </a>
-            </li>
-            <li>
-                <a href="https://www.linkedin.com/in/mukilan-k-2559972a2?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
-                    <img src= "C:\Users\mukil\OneDrive\Desktop\porfolio mukilan\icon\linkedin.png" height="50px" width="100px" alt="LinkedIn" class="icon">
-                </a>
-            </li>
-            <li>
-                <a href="https://www.facebook.com/mukilan.mukil.125323?mibextid=ZbWKwL" target="_blank">
-                    <img src="C:\Users\mukil\OneDrive\Desktop\porfolio mukilan\icon\facebook.png " height="50px" width="55 px"alt="Facebook" class="icon">
-                </a>
-            </li>
-            <li>
-                <a href="https://x.com/k_mukilan5?t=jqfVIRF70XeEuYWIpMknSA&s=09" target="_blank">
-                    <img src="C:\Users\mukil\OneDrive\Desktop\porfolio mukilan\icon\twitter.png" height="50px" width=" 100px" alt="X (Twitter)" class="icon">
-                </a>
-            </li>
-            <li>
-                <a href="https://github.com/MUKILAN-K" target="_blank">
-                    <img src="github.png" height="50px" width="100px" alt="GitHub" class="icon">
-                </a>
-            </li>
-        </ul>
-    </section>
-
-<br>
-<br>
-<p>
 
     <footer>
         <p>Be Happy, Live Happy</p>
+        <p>
+            <a href="https://x.com/k_mukilan5?t=jqfVIRF70XeEuYWIpMknSA&s=09">X</a> |
+            <a href="https://github.com/MUKILAN-K">GitHub</a> |
+            <a href="https://www.linkedin.com/in/mukilan-k-2559972a2?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">LinkedIn</a> |
+            <a href="https://www.facebook.com/mukilan.mukil.125323?mibextid=ZbWKwL">Facebook</a> |
+            <a href="mailto:mukilankumanan2005@gmail.com">Gmail</a>
+        </p>
     </footer>
-    </p>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.style.display = 'none');
+            
+            // Show the selected section
+            document.getElementById(sectionId).style.display = 'block';
+        }
+    </script>
 </body>
+
 </html>
