@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Chronicles // Mukilan K</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="home-styles.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script src="model-data.js"></script>
+    <style>
+        .rpg-container {
+            opacity: 1 !important;
+            transform: scale(1) !important;
+        }
+        .left-panel .nav-item {
+            text-decoration: none;
+        }
+        .profile-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 100%;
+        }
+        .prof-badge-card {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid #f59e0b;
+            color: #f59e0b;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            line-height: 1.4;
+        }
+        .prof-detail-panel {
+            background: rgba(11,22,50,0.3);
+            border: 1.5px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            flex: 1;
+            overflow-y: auto;
+        }
+        .prof-section-title {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--neon-cyan);
+            letter-spacing: 0.05em;
+            margin: 15px 0 8px 0;
+            text-transform: uppercase;
+        }
+        .prof-section-title:first-of-type {
+            margin-top: 0;
+        }
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border-left: 2px solid rgba(255,255,255,0.1);
+            padding-left: 15px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .timeline-row {
+            position: relative;
+        }
+        .timeline-row::before {
+            content: '';
+            position: absolute;
+            left: -22px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--neon-cyan);
+            border: 2px solid #030816;
+            box-shadow: 0 0 6px var(--neon-cyan);
+        }
+        .t-date {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--neon-violet);
+            display: block;
+            margin-bottom: 2px;
+        }
+        .t-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .t-comp {
+            font-size: 0.82rem;
+            color: var(--text-sub);
+            margin-bottom: 4px;
+        }
+        .t-desc {
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: rgba(255,255,255,0.6);
+            margin: 0;
+        }
+        /* Contact Form */
+        .c-form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+        .c-label {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+        }
+        .c-input, .c-textarea {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 8px 12px;
+            color: #ffffff;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+        .c-input:focus, .c-textarea:focus {
+            outline: none;
+            border-color: var(--neon-cyan);
+            background: rgba(0, 240, 255, 0.04);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+        }
+        .c-submit-btn {
+            width: 100%;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-violet));
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
+            text-transform: uppercase;
+        }
+        .c-submit-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+        }
+    </style>
+</head>
+<body class="dark-mode instant-bypass">
+    <canvas id="neural-canvas"></canvas>
+    <div class="bg-circles"></div>
+    <div class="bg-dust"></div>
+    <div class="glow-vignette"></div>
+
+    <div class="rpg-container">
+        <!-- ── HEADER TOP BAR ── -->
+        <header id="top-bar">
+            <div class="profile-header-left">
+                <div class="element-core-logo">
+                    <div class="element-icon-circle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 12h9l-1 10 10-10h-9l1-10z" fill="var(--neon-cyan)"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="profile-title-block">
+                    <div class="header-pre-title">AI Core / Mukilan K</div>
+                    <h1 class="header-name">MUKILAN K</h1>
+                </div>
+            </div>
+            
+            <div class="profile-header-right">
+                <a href="mukilan-k-resume.pdf" download class="action-icon-btn" title="Download Resume">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                </a>
+                <a href="https://github.com/MUKILAN-K" target="_blank" class="action-icon-btn" title="GitHub">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/mukilan-k-ai/" target="_blank" class="action-icon-btn" title="LinkedIn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+                <a href="https://huggingface.co/mukilan-k" target="_blank" class="action-icon-btn" title="Hugging Face">
+                    <span style="font-size: 1.15rem; line-height: 1; display: inline-block; vertical-align: middle;">🤗</span>
+                </a>
+                <button id="theme-toggle" class="action-icon-btn" title="Switch Theme">
+                    <span class="mode-icon-sun">☀️</span>
+                    <span class="mode-icon-moon">🌙</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- ── MAIN CONTENT GRID ── -->
+        <div class="rpg-grid">
+            <!-- LEFT PANEL: Navigation Links -->
+            <nav class="panel left-panel">
+                <a href="about.html" class="nav-item">
+                    <span class="nav-item-active-bar"></span>
+                    <div class="nav-text">
+                        <span class="nav-title">◈ Attributes</span>
+                    </div>
+                </a>
+                <a href="skills.html" class="nav-item">
+                    <span class="nav-item-active-bar"></span>
+                    <div class="nav-text">
+                        <span class="nav-title">◈ Weapons</span>
+                    </div>
+                </a>
+                <a href="patents.html" class="nav-item">
+                    <span class="nav-item-active-bar"></span>
+                    <div class="nav-text">
+                        <span class="nav-title">◈ Artifacts</span>
+                    </div>
+                </a>
+                <a href="projects.html" class="nav-item">
+                    <span class="nav-item-active-bar"></span>
+                    <div class="nav-text">
+                        <span class="nav-title">◈ Constellation</span>
+                    </div>
+                </a>
+                <a href="achievements.html" class="nav-item">
+                    <span class="nav-item-active-bar"></span>
+                    <div class="nav-text">
+                        <span class="nav-title">◈ Talents</span>
+                    </div>
+                </a>
+                <a href="profile.html" class="nav-item active">
+                    <span class="nav-item-active-bar"></span>
+                    <div class="nav-text">
+                        <span class="nav-title">◈ Profile</span>
+                    </div>
+                </a>
+            </nav>
+
+            <!-- CENTER PANEL: Character model -->
+            <div class="center-panel">
+                <div class="robot-stage">
+                    <div class="companion-robot-wrapper">
+                        <div class="companion-robot-img-container">
+                            <model-viewer 
+                                id="mascot-3d-model"
+                                src="sandrone_rigged_free.glb" 
+                                alt="3D Rigged Character" 
+                                auto-rotate 
+                                camera-controls 
+                                ar 
+                                shadow-intensity="1.8"
+                                interaction-prompt="none"
+                                autoplay
+                                style="width: 100%; height: 100%; background: transparent;">
+                            </model-viewer>
+                        </div>
+                    </div>
+                    
+                    <div class="robot-landing-pad">
+                        <div class="pad-ring pad-outer"></div>
+                        <div class="pad-ring pad-middle"></div>
+                        <div class="pad-ring pad-inner"></div>
+                        <div class="pad-crosshair"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT PANEL: Profile detailed view -->
+            <main class="panel right-panel" style="overflow-y: auto;">
+                <div class="profile-layout">
+                    <!-- MSME Grant Card -->
+                    <div class="prof-badge-card">
+                        <strong>Orchid Solution (MSME Grant – 5 Lakhs)</strong><br>
+                        Awarded capital funding for the development of AI, IoT, and clean energy-based commercial devices.
+                    </div>
+
+                    <!-- Details Card container -->
+                    <div class="prof-detail-panel">
+                        <div class="prof-section-title">Chronicle Logs</div>
+                        <div class="timeline-container">
+                            <div class="timeline-row">
+                                <span class="t-date">2023 - PRESENT</span>
+                                <div class="t-title">AI Intern</div>
+                                <div class="t-comp">GreenSkill AI (Edunet Foundation) with SHELL</div>
+                                <p class="t-desc">Deploying machine learning forecasting blocks and embedded sensor loops.</p>
+                            </div>
+                            <div class="timeline-row">
+                                <span class="t-date">2023 - 2024</span>
+                                <div class="t-title">Cloud Intern</div>
+                                <div class="t-comp">IBM Cloud (Edunet + IBM)</div>
+                                <p class="t-desc">Validated cloud database triggers and serverless compute pipelines.</p>
+                            </div>
+                            <div class="timeline-row">
+                                <span class="t-date">2023</span>
+                                <div class="t-title">Wix Web Developer Intern</div>
+                                <div class="t-comp">Inexus</div>
+                                <p class="t-desc">Built custom responsive components and configured system integrations.</p>
+                            </div>
+                        </div>
+
+                        <div class="prof-section-title">Uplink Encryption</div>
+                        <form onsubmit="event.preventDefault(); alert('Transmission Sent!');">
+                            <div class="c-form-group">
+                                <label class="c-label">Sender Name</label>
+                                <input type="text" class="c-input" placeholder="Your Name" required>
+                            </div>
+                            <div class="c-form-group">
+                                <label class="c-label">Uplink Gateway (Email)</label>
+                                <input type="email" class="c-input" placeholder="Your Email" required>
+                            </div>
+                            <div class="c-form-group">
+                                <label class="c-label">Transmission Message</label>
+                                <textarea class="c-textarea" rows="3" placeholder="Message content..." required></textarea>
+                            </div>
+                            <button type="submit" class="c-submit-btn">SEND TRANSMISSION</button>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- ── BOTTOM STATUS BAR & PRIMARY CTA ── -->
+        <footer id="bottom-bar">
+            <div class="bottom-left-decor">
+                <span class="decor-line-title">ENGINEERING INTELLIGENCE</span>
+                <span class="decor-line-sub">SYS_STATUS: READY // DB_GRID_LINK: ESTABLISHED</span>
+            </div>
+            
+            <div class="bottom-center-scroll" style="visibility: hidden;">
+                <span class="scroll-mouse-icon">🖱️</span>
+                <span class="scroll-label">SCROLL</span>
+            </div>
+
+            <div class="bottom-right-cta">
+                <a href="index.html?bypass=true" class="enter-realm-cta" style="text-decoration: none; display: flex; align-items: center; justify-content: center; height: 100%;">
+                    <div class="cta-inner-content">
+                        <div class="cta-text-block">
+                            <span class="cta-title-main">BACK TO CHAMBER</span>
+                            <span class="cta-sub-main">Exit Active View ◈</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="home-script.js"></script>
+    <script>
+        // Setup base64 3D loader
+        document.addEventListener('DOMContentLoaded', () => {
+            const viewer = document.getElementById('mascot-3d-model');
+            if (viewer && typeof MODEL_BASE64 !== 'undefined') {
+                try {
+                    const parts = MODEL_BASE64.split(',');
+                    const mime = parts[0].match(/:(.*?);/)[1];
+                    const base64Data = parts[1];
+                    const byteCharacters = atob(base64Data);
+                    const byteNumbers = new Array(byteCharacters.length);
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+                    const blob = new Blob([byteArray], {type: mime});
+                    const blobUrl = URL.createObjectURL(blob);
+                    viewer.src = blobUrl;
+                } catch (e) {
+                    viewer.src = "sandrone_rigged_free.glb";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter the LAN Realm</title>
+    <!-- Google Fonts for Epic, Majestic, and Futuristic Typographies -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Space+Grotesk:wght@300;400;600;700&family=Syncopate:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="home-styles.css">
+    <!-- Google Model Viewer Engine for Hardware-Accelerated 3D GLB Rendering -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <!-- Local Base64 3D model data to bypass browser file:// CORS restrictions -->
+    <script src="model-data.js"></script>
+</head>
+<body class="dark-mode"> <!-- Default to Dark Mode -->
+    <script>
+        (function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('bypass') === 'true') {
+                document.body.classList.add('instant-bypass', 'home-active');
+                // Remove bypass query parameter from history so standard browser reloads show the intro loader
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        })();
+    </script>
+    <!-- Main Entering Screen Loader (Genshin Impact Inspired, High Imagination Edition) -->
+    <div id="gate-loader-container">
+        <!-- Cosmic Sky & Cloud Parallax Layers -->
+        <div class="sky-background">
+            <div class="stars-layer"></div>
+            <div class="nebula-cloud nebula-violet"></div>
+            <div class="nebula-cloud nebula-amber"></div>
+            <div class="nebula-cloud nebula-blue"></div>
+            <div class="cloud-layer layer-back"></div>
+            <div class="cloud-layer layer-front"></div>
+            <div class="sun-rays"></div>
+        </div>
+
+        <!-- Flowing Vector Field Canvas for Cosmic Wind & Embers -->
+        <canvas id="particle-canvas"></canvas>
+
+        <!-- Centered Cinematic Portal Gate -->
+        <div class="portal-wrapper">
+            <!-- Detailed Mechanical/Magical SVG Rings -->
+            <svg class="portal-svg-rings" viewBox="0 0 200 200">
+                <defs>
+                    <filter id="glow-heavy" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="5" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                    <filter id="glow-gold" x="-30%" y="-30%" width="160%" height="160%">
+                        <feGaussianBlur stdDeviation="3" result="blur" />
+                        <feComponentTransfer in="blur" result="glow1">
+                            <feFuncA type="linear" slope="0.8"/>
+                        </feComponentTransfer>
+                        <feMerge>
+                            <feMergeNode in="glow1" />
+                            <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                    </filter>
+                </defs>
+                <!-- Runic/Circuit concentric paths -->
+                <circle class="svg-ring outer-runes" cx="100" cy="100" r="95"></circle>
+                <circle class="svg-ring middle-segments" cx="100" cy="100" r="82" stroke-dasharray="10 40 30 10 70 20"></circle>
+                <circle class="svg-ring middle-dots" cx="100" cy="100" r="74" stroke-dasharray="1 15"></circle>
+                <circle class="svg-ring inner-solid" cx="100" cy="100" r="64"></circle>
+            </svg>
+
+            <!-- Circularly Placed Element Symbols (Tech Runes) -->
+            <div class="circular-symbols-orbit">
+                <!-- Symbol 1: Data Node (Top-Left) -->
+                <div class="element-symbol orb-1" data-element="1" style="--index: 0;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M16 18L22 12L16 6M8 6L2 12L8 18" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <!-- Symbol 2: Matrix Grid (Top-Right) -->
+                <div class="element-symbol orb-2" data-element="2" style="--index: 1;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 17L12 22L22 17M2 12L12 17L22 12" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <!-- Symbol 3: Quantum Node (Right) -->
+                <div class="element-symbol orb-3" data-element="3" style="--index: 2;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21"/>
+                        <line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                </div>
+                <!-- Symbol 4: Cypher Core (Bottom) -->
+                <div class="element-symbol orb-4" data-element="4" style="--index: 3;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 2v20M2 12h20"/>
+                    </svg>
+                </div>
+                <!-- Symbol 5: Neural Spark (Left) -->
+                <div class="element-symbol orb-5" data-element="5" style="--index: 4;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Portal Core: Receives the "touching" (hover) trigger -->
+            <div class="portal-core" id="portal-touch-core">
+                <div class="portal-core-glow-layer"></div>
+                
+                <h1 class="realm-title">
+                    <span class="word-small">ENTER THE</span>
+                    <span class="word-large">LAN REALM</span>
+                </h1>
+                
+                <p class="status-text" id="status-message">Connecting...</p>
+
+                <!-- Touch Prompt (Appears after loaded) -->
+                <div class="touch-prompt hidden" id="touch-prompt">
+                    <div class="prompt-waves">
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                    </div>
+                    <span class="prompt-text">TOUCH THE CORE</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Theme Toggle Switch (Top-Right Corner) -->
+        <div class="theme-control" id="gate-theme-toggle" title="Switch Theme">
+            <!-- Sun Icon (shown in Dark mode to switch to Light) -->
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <!-- Moon Icon (shown in Light mode to switch to Dark) -->
+            <svg class="icon-moon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+        </div>
+
+        <!-- Ambient Sound Control -->
+        <div class="audio-control" id="audio-toggle">
+            <svg class="icon-sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+            </svg>
+            <svg class="icon-sound-off hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+                <line x1="23" y1="9" x2="17" y2="15"/>
+                <line x1="17" y1="9" x2="23" y2="15"/>
+            </svg>
+        </div>
+
+        <!-- Subtly hidden progress bar integrated at the very bottom -->
+        <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="loader-progress"></div>
+        </div>
+    </div>
+
+    <!-- Blinding flash cover for scene transition -->
+    <div id="portal-flash"></div>
+
+    <!-- Transition stage: Welcome Screen (Genshin Login Style) -->
+    <div id="welcome-stage" class="hidden">
+        <!-- Floating Ancient Pillars (CSS silhouettes) -->
+        <div class="sky-pillars">
+            <div class="pillar p1"></div>
+            <div class="pillar p2"></div>
+            <div class="pillar p3"></div>
+        </div>
+
+        <div class="welcome-content" id="welcome-content">
+            <h1 class="genshin-start-title">WELCOME TO THE LAN REALM</h1>
+            <div class="genshin-divider-wrapper">
+                <span class="g-line"></span>
+                <span class="g-diamond">❖</span>
+                <span class="g-line"></span>
+            </div>
+            <div class="genshin-tap-begin" id="welcome-tap-btn">TAP TO BEGIN</div>
+            
+            <!-- Server select box -->
+            <div class="genshin-server-box">
+                <span class="server-check">✓</span>
+                <span class="server-name">LAN Core / Asia</span>
+            </div>
+        </div>
+
+        <!-- Glitters container -->
+        <div class="glitters-container" id="glitters-container"></div>
+
+        <!-- Bottom details -->
+        <div class="genshin-version-lbl">OSRELAndroid6.6.0_R45246446_S44916582_D45557904</div>
+        
+        <div class="genshin-bottom-icons">
+            <div class="g-icon-circle">⚙️</div>
+            <div class="g-icon-circle">👤</div>
+        </div>
+    </div>
+
+    <!-- Scanline overlay for CRT/Cyber feeling -->
+    <div class="hud-scanlines"></div>
+
+    <!-- Background Blueprint HUD and Parallax Dust -->
+    <div class="bg-hud-grid"></div>
+    <canvas id="neural-canvas"></canvas>
+    <div class="bg-circles"></div>
+    <div class="bg-dust"></div>
+    <div class="glow-vignette"></div>
+
+    <!-- Main RPG Profile Shell (revealed as welcome-stage collapses) -->
+    <div class="rpg-container">
+
+        <!-- ── HEADER TOP BAR ── -->
+        <header id="top-bar">
+            <div class="profile-header-left">
+                <!-- AI Core Element Logo (Genshin Style) -->
+                <div class="element-core-logo">
+                    <div class="element-icon-circle">
+                        <!-- Hydro-style AI Spark vector -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 12h9l-1 10 10-10h-9l1-10z" fill="var(--neon-cyan)"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="profile-title-block">
+                    <div class="header-pre-title">AI Core / Mukilan K</div>
+                    <h1 class="header-name">MUKILAN K</h1>
+                </div>
+            </div>
+
+            <!-- Orbiting coordinates / tech meta (top center) -->
+            <div class="header-center-meta">
+                <span class="meta-tag">BUILDING INTELLIGENCE</span>
+                <span class="meta-separator">◈</span>
+                <span class="meta-tag">TRANSFORMING FUTURES</span>
+            </div>
+            
+            <div class="profile-header-right">
+                <!-- Action Buttons -->
+                <a href="mukilan-k-resume.pdf" download class="action-icon-btn" title="Download Resume">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                </a>
+                <a href="https://github.com/MUKILAN-K" target="_blank" class="action-icon-btn" title="GitHub">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/mukilan-k-ai/" target="_blank" class="action-icon-btn" title="LinkedIn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+                <a href="https://huggingface.co/mukilan-k" target="_blank" class="action-icon-btn" title="Hugging Face">
+                    <span style="font-size: 1.15rem; line-height: 1; display: inline-block; vertical-align: middle;">🤗</span>
+                </a>
+                <!-- System Config Mode switch -->
+                <button id="theme-toggle" class="action-icon-btn" title="Switch Theme">
+                    <span class="mode-icon-sun">☀️</span>
+                    <span class="mode-icon-moon">🌙</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- ── MAIN THREE-PANEL CORE GRID ── -->
+        <div class="rpg-grid">
+
+            <!-- 1. LEFT PANEL: NAVIGATION MENU -->
+            <aside class="panel left-panel">
+                <!-- HUD Corner Decors -->
+                <div class="hud-panel-corner top-l"></div>
+                <div class="hud-panel-corner top-r"></div>
+                <div class="hud-panel-corner bottom-l"></div>
+                <div class="hud-panel-corner bottom-r"></div>
+
+                <div class="panel-header-tag">NAVIGATION PANEL // INDEX</div>
+                
+                <div class="nav-menu">
+                    <!-- Tab 1: Attributes -->
+                    <div class="nav-item active" data-tab="about">
+                        <div class="nav-item-active-bar"></div>
+                        <div class="nav-text">
+                            <span class="nav-title">◈ Attributes</span>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Weapons -->
+                    <div class="nav-item" data-tab="skills">
+                        <div class="nav-item-active-bar"></div>
+                        <div class="nav-text">
+                            <span class="nav-title">◈ Weapons</span>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: Artifacts -->
+                    <div class="nav-item" data-tab="patents">
+                        <div class="nav-item-active-bar"></div>
+                        <div class="nav-text">
+                            <span class="nav-title">◈ Artifacts</span>
+                        </div>
+                    </div>
+
+                    <!-- Tab 4: Constellation -->
+                    <div class="nav-item" data-tab="projects">
+                        <div class="nav-item-active-bar"></div>
+                        <div class="nav-text">
+                            <span class="nav-title">◈ Constellation</span>
+                        </div>
+                    </div>
+
+                    <!-- Tab 5: Talents -->
+                    <div class="nav-item" data-tab="achievements">
+                        <div class="nav-item-active-bar"></div>
+                        <div class="nav-text">
+                            <span class="nav-title">◈ Talents</span>
+                        </div>
+                    </div>
+
+                    <!-- Tab 6: Profile -->
+                    <div class="nav-item" data-tab="profile">
+                        <div class="nav-item-active-bar"></div>
+                        <div class="nav-text">
+                            <span class="nav-title">◈ Profile</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- 2. CENTER PANEL: AI COMPANION MASCOT -->
+            <div class="center-panel">
+                
+                <!-- Robot Area Wrapper -->
+                <div class="robot-stage">
+                    
+                    <!-- Concentric 3D Platform Pads under Robot -->
+                    <div class="robot-landing-pad">
+                        <div class="pad-ring pad-outer"></div>
+                        <div class="pad-ring pad-middle"></div>
+                        <div class="pad-ring pad-inner"></div>
+                        <div class="pad-crosshair"></div>
+                    </div>
+
+                    <!-- Orbital Rings -->
+                    <div class="orbit-ring ring-1"></div>
+                    <div class="orbit-ring ring-2"></div>
+                    <div class="orbit-ring ring-3"></div>
+                    
+                    <!-- HIGH FIDELITY AI COMPANION ROBOT (3D WebGL GLB Model) -->
+                    <div class="companion-robot-wrapper">
+                        <div class="companion-robot-img-container">
+                            <model-viewer 
+                                src="sandrone_rigged_free.glb" 
+                                alt="3D Rigged Companion Character" 
+                                auto-rotate 
+                                camera-controls 
+                                ar 
+                                shadow-intensity="1.8"
+                                interaction-prompt="none"
+                                autoplay
+                                style="width: 100%; height: 100%; background: transparent;"
+                                id="mascot-3d-model">
+                            </model-viewer>
+                        </div>
+                    </div>
+
+                    <!-- Orbiting Interactive Holographic Screens (Blueprints / Tech details) -->
+                    <!-- Code block screen -->
+                    <div class="hologram-screen holo-1" data-magnetic>
+                        <div class="holo-border"></div>
+                        <span class="holo-symbol">&lt;/&gt;</span>
+                    </div>
+                    <!-- Energy lightning screen -->
+                    <div class="hologram-screen holo-2" data-magnetic>
+                        <div class="holo-border"></div>
+                        <span class="holo-symbol">⚡</span>
+                    </div>
+                    <!-- Core symbol screen -->
+                    <div class="hologram-screen holo-3" data-magnetic>
+                        <div class="holo-border"></div>
+                        <span class="holo-symbol">◈</span>
+                    </div>
+
+                </div><!-- end robot-stage -->
+
+                <!-- Status panel below companion -->
+                <div class="system-status-container">
+                    <div class="status-bracket-left"></div>
+                    <div class="status-bracket-right"></div>
+                    
+                    <div class="system-status-header">// PROFILE CORE COMPILER ONLINE</div>
+                    <div class="system-status-grid">
+                        <div class="status-chip chip-green">
+                            <span class="status-dot"></span>
+                            <span class="status-chip-text">CORE ONLINE</span>
+                        </div>
+                        <div class="status-chip chip-blue">
+                            <span class="status-dot"></span>
+                            <span class="status-chip-text">AI ACTIVE</span>
+                        </div>
+                        <div class="status-chip chip-purple">
+                            <span class="status-dot"></span>
+                            <span class="status-chip-text">INNOVATION MODE</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 3. RIGHT PANEL: DYNAMIC INFORMATION BOARD -->
+            <main class="panel right-panel">
+                <!-- HUD Corner Decors -->
+                <div class="hud-panel-corner top-l"></div>
+                <div class="hud-panel-corner top-r"></div>
+                <div class="hud-panel-corner bottom-l"></div>
+                <div class="hud-panel-corner bottom-r"></div>
+
+                <div class="panel-header-tag" id="dynamic-panel-header">DIGITAL IDENTITY</div>
+                
+                <div id="info-panel-content">
+                    <!-- Tab contents will swap in dynamically via JS -->
+                </div>
+            </main>
+
+        </div><!-- end rpg-grid -->
+
+        <!-- ── BOTTOM STATUS BAR & PRIMARY CTA ── -->
+        <footer id="bottom-bar">
+            <div class="bottom-left-decor">
+                <span class="decor-line-title">ENGINEERING INTELLIGENCE</span>
+                <span class="decor-line-sub">SYS_STATUS: READY // DB_GRID_LINK: ESTABLISHED</span>
+            </div>
+            
+            <div class="bottom-center-scroll">
+                <span class="scroll-mouse-icon">🖱️</span>
+                <span class="scroll-label">SCROLL</span>
+            </div>
+
+            <div class="bottom-right-cta">
+                <!-- RPG Enterprise Gateway CTA -->
+                <button id="enter-realm-btn" class="enter-realm-cta" data-magnetic>
+                    <div class="cta-glow-pulse"></div>
+                    <div class="cta-inner-content">
+                        <div class="cta-text-block">
+                            <span class="cta-title-main">ENTER THE CHAPTER</span>
+                            <span class="cta-sub-main">Examine Details →</span>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </footer>
+
+    </div><!-- end rpg-container -->
+
+    <!-- Static templates for each tab, read by JavaScript to compile onto right panel -->
+    <div id="tab-templates" style="display: none;">
+        
+        <!-- 1. ATTRIBUTES TEMPLATE (Genshin Style) -->
+        <div data-template="about">
+            <div class="genshin-char-info">
+                <h2 class="genshin-char-name">MUKILAN K</h2>
+                <div class="genshin-stars">✦✦✦✦✦</div>
+            </div>
+            
+            <div class="genshin-divider"></div>
+
+            <div class="genshin-level-row">
+                <div class="lvl-label-block">
+                    <span class="lvl-lbl">Level</span>
+                    <span class="lvl-num">99</span>
+                    <span class="lvl-max">/ 99</span>
+                </div>
+            </div>
+            <div class="lvl-progress-bar">
+                <div class="lvl-progress-fill" style="width: 100%;"></div>
+            </div>
+
+            <!-- Stats List -->
+            <div class="genshin-stats-list">
+                <div class="stats-row">
+                    <div class="stat-left">
+                        <span class="stat-icon">❤️</span>
+                        <span class="stat-name">Neural Parameters</span>
+                    </div>
+                    <span class="stat-value">21,373</span>
+                </div>
+                <div class="stats-row">
+                    <div class="stat-left">
+                        <span class="stat-icon">⚔️</span>
+                        <span class="stat-name">Cloud Compute Nodes</span>
+                    </div>
+                    <span class="stat-value">1,865</span>
+                </div>
+                <div class="stats-row">
+                    <div class="stat-left">
+                        <span class="stat-icon">🛡️</span>
+                        <span class="stat-name">Defensible Patents</span>
+                    </div>
+                    <span class="stat-value">14</span>
+                </div>
+                <div class="stats-row">
+                    <div class="stat-left">
+                        <span class="stat-icon">🌀</span>
+                        <span class="stat-name">System Efficiency</span>
+                    </div>
+                    <span class="stat-value">98%</span>
+                </div>
+                <div class="stats-row">
+                    <div class="stat-left">
+                        <span class="stat-icon">⚡</span>
+                        <span class="stat-name">Deployments</span>
+                    </div>
+                    <span class="stat-value">240</span>
+                </div>
+            </div>
+
+            <!-- Details Capsule Button -->
+            <button class="genshin-details-btn" onclick="document.querySelector('[data-tab=skills]').click();">Details</button>
+
+            <!-- Affinity sub-card -->
+            <div class="genshin-affinity-card">
+                <div class="affinity-header">
+                    <div class="aff-left">
+                        <span class="aff-icon">💖</span>
+                        <span class="aff-name">Recruiter Affinity</span>
+                    </div>
+                    <span class="aff-val">10</span>
+                </div>
+                <div class="aff-progress-bar">
+                    <div class="aff-progress-fill" style="width: 100%;"></div>
+                </div>
+            </div>
+
+            <!-- Descriptive Clan Bio -->
+            <div class="genshin-bio-block">
+                <p>The young but highly accomplished AI engineer, head of ecological telemetry projects. Cultured and polite, he is a man of many ways and means.</p>
+            </div>
+        </div>
+
+        <!-- 2. SKILLS TEMPLATE -->
+        <div data-template="skills">
+            <h2 class="section-panel-title">TECHNICAL ARSENAL</h2>
+            <p class="section-panel-desc">A breakdown of my engineering capabilities and language masteries.</p>
+            
+            <div class="skills-scrollable">
+                <div class="skill-category">
+                    <h3 class="skill-category-title">// 01. MACHINE LEARNING &amp; DATA SCIENCE</h3>
+                    <div class="skill-bars-list">
+                        <div class="skill-progress-block">
+                            <div class="spb-info"><span>Python, PyTorch &amp; ML Pipelines</span><span>92%</span></div>
+                            <div class="spb-bar"><div class="spb-fill fill-violet" style="width: 92%"></div></div>
+                        </div>
+                        <div class="spb-info-tags">TensorFlow · PyTorch · OpenCV · pandas · Scikit-Learn</div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="skill-category-title">// 02. EMBEDDED IoT ENGINEERING</h3>
+                    <div class="skill-bars-list">
+                        <div class="skill-progress-block">
+                            <div class="spb-info"><span>Firmware (C/C++) &amp; RTOS</span><span>88%</span></div>
+                            <div class="spb-bar"><div class="spb-fill fill-cyan" style="width: 88%"></div></div>
+                        </div>
+                        <div class="spb-info-tags">STM32 · ESP32 · FreeRTOS · I2C/SPI · telemetry links</div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="skill-category-title">// 03. SCALABLE CLOUD &amp; INTERFACES</h3>
+                    <div class="skill-bars-list">
+                        <div class="skill-progress-block">
+                            <div class="spb-info"><span>AWS Serverless &amp; Architectures</span><span>85%</span></div>
+                            <div class="spb-bar"><div class="spb-fill fill-green" style="width: 85%"></div></div>
+                        </div>
+                        <div class="spb-info-tags">AWS Lambda · API Gateways · DynamoDB · Docker · React · Vanilla CSS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. PROJECTS TEMPLATE -->
+        <div data-template="projects">
+            <h2 class="section-panel-title">FEATURED LAB SYSTEMS</h2>
+            <p class="section-panel-desc">Select works forged at the intersection of AI and cloud hardware.</p>
+            
+            <div class="projects-list-scroll">
+                <!-- Project 1 -->
+                <div class="rpg-project-card">
+                    <div class="rpc-meta">
+                        <h3 class="rpc-title">RescueWist</h3>
+                        <span class="rpc-tag badge-blue">AI SEMANTIC</span>
+                    </div>
+                    <p class="rpc-desc">Cognitive rescue framework utilizing semantic intelligence models to coordinate crisis response nodes.</p>
+                    <a href="project-rescuewist.html" class="rpc-link">EXAMINE BLUEPRINT →</a>
+                </div>
+                <!-- Project 2 -->
+                <div class="rpg-project-card">
+                    <div class="rpc-meta">
+                        <h3 class="rpc-title">BioRespira</h3>
+                        <span class="rpc-tag badge-green">IoT CLINICAL</span>
+                    </div>
+                    <p class="rpc-desc">Smart assistive ventilator equipped with high-speed sensor streams and ESP32 PID controller loops.</p>
+                    <a href="project-biorespira.html" class="rpc-link">EXAMINE BLUEPRINT →</a>
+                </div>
+                <!-- Project 3 -->
+                <div class="rpg-project-card">
+                    <div class="rpc-meta">
+                        <h3 class="rpc-title">Solar Powered Purifier</h3>
+                        <span class="rpc-tag badge-gold">CLEAN TECH</span>
+                    </div>
+                    <p class="rpc-desc">Particulate defense grid module powered by tracking solar cells and monitored via cloud telemetry.</p>
+                    <a href="project-purifier.html" class="rpc-link">EXAMINE BLUEPRINT →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. PATENTS TEMPLATE -->
+        <div data-template="patents">
+            <h2 class="section-panel-title">INNOVATION ARCHIVE</h2>
+            <p class="section-panel-desc">Defensible architectures published and submitted to patent offices.</p>
+            
+            <div class="patents-list-scroll">
+                <div class="patent-item">
+                    <div class="p-header">
+                        <span class="p-type badge-gold">UTILITY</span>
+                        <span class="p-count">11 PUBLISHED</span>
+                    </div>
+                    <h3 class="p-title">Integrated IoT Ecosystem Patents</h3>
+                    <p class="p-desc">Covers custom sensor node arrays, remote serverless handshakes, and smart power management circuits drafted for WIPO/Indian Patent Office.</p>
+                </div>
+
+                <div class="patent-item">
+                    <div class="p-header">
+                        <span class="p-type badge-blue">DESIGN</span>
+                        <span class="p-count">3 INVENTED</span>
+                    </div>
+                    <h3 class="p-title">Ergonomic Medical &amp; Eco Hardware Shells</h3>
+                    <p class="p-desc">Focuses on structural ergonomics for portable air filters, smart enclosures, and assistive medical devices.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. ACHIEVEMENTS TEMPLATE -->
+        <div data-template="achievements">
+            <h2 class="section-panel-title">HONOR BOARD</h2>
+            <p class="section-panel-desc">Certifications and competition trophies logged in the digital realm.</p>
+            
+            <div class="awards-grid">
+                <div class="award-card">
+                    <span class="award-icon">🎖️</span>
+                    <div class="aw-txt">
+                        <h3 class="award-title">AWS Solutions Architect</h3>
+                        <p class="award-desc">Authorized validation for designing highly-available, serverless cloud architectures.</p>
+                    </div>
+                </div>
+                <div class="award-card">
+                    <span class="award-icon">🏆</span>
+                    <div class="aw-txt">
+                        <h3 class="award-title">National Hackathon Winner</h3>
+                        <p class="award-desc">First place in Clean-Tech for deploying an environmental monitoring grid.</p>
+                    </div>
+                </div>
+                <div class="award-card">
+                    <span class="award-icon">🎓</span>
+                    <div class="aw-txt">
+                        <h3 class="award-title">Academic Merit Fellowship</h3>
+                        <p class="award-desc">Awarded for research contributions in combining deep neural nets with IoT nodes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. PROFILE TEMPLATE (COMBINED JOURNEY & CONTACT) -->
+        <div data-template="profile">
+            <!-- Experience Timeline Section -->
+            <h2 class="section-panel-title">JOURNEY ARCHIVE</h2>
+            <p class="section-panel-desc">Professional deployments and research postings completed.</p>
+            
+            <div class="experience-timeline" style="margin-bottom: 30px;">
+                <div class="timeline-item">
+                    <div class="t-line"></div>
+                    <div class="t-node node-purple"></div>
+                    <div class="t-content">
+                        <h3 class="t-title">IBM Cloud Research Intern</h3>
+                        <span class="t-date">SUMMER 2025 // TOKYO / BANGALORE</span>
+                        <p class="t-desc">Architected scalable serverless microservices and explored advanced computing arrays on Kubernetes platforms.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="t-line"></div>
+                    <div class="t-node node-cyan"></div>
+                    <div class="t-content">
+                        <h3 class="t-title">AI Research Fellow</h3>
+                        <span class="t-date">2024 - 2025 // COLLEGE LABS</span>
+                        <p class="t-desc">Designed convolutional models and telemetry systems for monitoring remote ecological nodes.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="t-node node-green"></div>
+                    <div class="t-content">
+                        <h3 class="t-title">B.Tech Student in AI &amp; DS</h3>
+                        <span class="t-date">2022 - PRESENT // INVENTIONS &amp; CODE</span>
+                        <p class="t-desc">Consistently scoring top tiers while authoring utility and design patents across IoT and sustainable devices.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Separator Line -->
+            <div style="border-top: 1px dashed rgba(255,255,255,0.15); margin: 25px 0;"></div>
+
+            <!-- Contact Uplink Section -->
+            <h2 class="section-panel-title">COMMUNICATION UPLINK</h2>
+            <p class="section-panel-desc">Send an encrypted transmission to lock in a connection.</p>
+            
+            <form id="contact-form" class="contact-form-block" onsubmit="event.preventDefault(); alert('Transmission Sent!');">
+                <div class="form-row">
+                    <input type="text" placeholder="VISITOR NAME" required class="form-input">
+                    <input type="email" placeholder="EMAIL UPLINK" required class="form-input">
+                </div>
+                <input type="text" placeholder="TRANSMISSION SUBJECT" required class="form-input">
+                <textarea placeholder="MESSAGE DETAIL" rows="4" required class="form-input form-textarea"></textarea>
+                <button type="submit" class="form-submit-btn">SEND TRANSMISSION →</button>
+            </form>
+        </div>
+
+    </div><!-- end tab-templates -->
+
+    <script src="script.js"></script>
+    <script src="home-script.js"></script>
+</body>
+</html>

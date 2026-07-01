@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constellation Projects // Mukilan K</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="home-styles.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script src="model-data.js"></script>
+    <style>
+        .rpg-container {
+            opacity: 1 !important;
+            transform: scale(1) !important;
+        }
+        .left-panel .nav-item {
+            text-decoration: none;
+        }
+        .constellation-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 100%;
+        }
+        .const-canvas-wrapper {
+            position: relative;
+            height: 240px;
+            background: rgba(11, 22, 50, 0.4);
+            border: 1.5px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .const-sky {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .const-star {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #ffffff;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 20;
+            transform: translate(-50%, -50%);
+            transition: all 0.2s ease;
+            box-shadow: 0 0 8px var(--neon-cyan);
+        }
+        .const-star:hover, .const-star.active {
+            box-shadow: 0 0 20px #ffffff, 0 0 10px var(--neon-cyan);
+            background: var(--neon-cyan);
+            transform: translate(-50%, -50%) scale(1.25);
+        }
+        .const-star-lbl {
+            position: absolute;
+            color: var(--neon-cyan);
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            white-space: nowrap;
+            transform: translate(-50%, 12px);
+            text-shadow: 0 0 5px rgba(0, 240, 255, 0.4);
+            pointer-events: none;
+        }
+        /* Star Coordinates inside right panel canvas */
+        #s1 { top: 75%; left: 15%; }
+        #s2 { top: 48%; left: 35%; }
+        #s3 { top: 22%; left: 22%; }
+        #s4 { top: 28%; left: 68%; }
+        #s5 { top: 56%; left: 78%; }
+        #s6 { top: 78%; left: 54%; }
+
+        .const-detail-panel {
+            background: rgba(11,22,50,0.3);
+            border: 1.5px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            flex: 1;
+            overflow-y: auto;
+        }
+        .cd-header {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+        }
+        .cd-lvl {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+        }
+        .cd-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 4px 0;
+        }
+        .cd-tag {
+            background: rgba(168, 85, 247, 0.15);
+            color: var(--neon-violet);
+            border: 1px solid var(--neon-violet);
+            font-size: 0.72rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 4px;
+        }
+        .cd-section-title {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--neon-cyan);
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+        .cd-desc {
+            font-size: 0.86rem;
+            line-height: 1.5;
+            color: var(--text-sub);
+            margin: 0 0 15px 0;
+        }
+        .cd-tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+        .cd-tech-tag {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            background: rgba(255, 255, 255, 0.06);
+            color: #ffffff;
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .cd-unlock-badge {
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid #10b981;
+            color: #10b981;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="dark-mode instant-bypass">
+    <canvas id="neural-canvas"></canvas>
+    <div class="bg-circles"></div>
+    <div class="bg-dust"></div>
+    <div class="glow-vignette"></div>
+
+    <div class="rpg-container">
+        <!-- ── HEADER TOP BAR ── -->
+        <header id="top-bar">
+            <div class="profile-header-left">
+                <div class="element-core-logo">
+                    <div class="element-icon-circle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 12h9l-1 10 10-10h-9l1-10z" fill="var(--neon-cyan)"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="profile-title-block">
+                    <div class="header-pre-title">AI Core / Mukilan K</div>
+                    <h1 class="header-name">MUKILAN K</h1>
+                </div>
+            </div>
+            
+            <div class="profile-header-right">
+                <a href="mukilan-k-resume.pdf" download class="action-icon-btn" title="Download Resume">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                </a>
+                <a href="https://github.com/MUKILAN-K" target="_blank" class="action-icon-btn" title="GitHub">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/mukilan-k-ai/" target="_blank" class="action-icon-btn" title="LinkedIn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+                <a href="https://huggingface.co/mukilan-k" target="_blank" class="action-icon-btn" title="Hugging Face">
+                    <span style="font-size: 1.15rem; line-height: 1; display: inline-block; vertical-align: middle;">🤗</span>
+                </a>
+                <button id="theme-toggle" class="action-icon-btn" title="Switch Theme">
+                    <span class="mode-icon-sun">☀️</span>
+                    <span class="mode-icon-moon">🌙</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- ── MAIN CONTENT GRID ── -->
+        <div class="rpg-grid">
+            <!-- LEFT PANEL: Navigation Links -->
+            <nav class="panel left-panel">
+                <a href="about.html" class="nav-item">
+                    <span class="nav-item-active-bar"></span>
+                    <div class="nav-text">
+                        <span class="nav-title">◈ Attributes</span>
+                    </div>
+                </a>
+                <a href="skills.html" class="nav-item">
+                    <span class="nav-item-active-bar"></span>
+                    <div class="nav-text">
+                        <span class="nav-title">◈ Weapons</span>
+                    </div>
+                </a>
+                <a href="patents.html" class="nav-item">
+                    <span class="nav-item-active-bar"></span>
+                    <div class="nav-text">
+                        <span class="nav-title">◈ Artifacts</span>
+                    </div>
+                </a>
+                <a href="projects.html" class="nav-item active">
+                    <span class="nav-item-active-bar"></span>
+                    <div class="nav-text">
+                        <span class="nav-title">◈ Constellation</span>
+                    </div>
+                </a>
+                <a href="achievements.html" class="nav-item">
+                    <span class="nav-item-active-bar"></span>
+                    <div class="nav-text">
+                        <span class="nav-title">◈ Talents</span>
+                    </div>
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <span class="nav-item-active-bar"></span>
+                    <div class="nav-text">
+                        <span class="nav-title">◈ Profile</span>
+                    </div>
+                </a>
+            </nav>
+
+            <!-- CENTER PANEL: Character model -->
+            <div class="center-panel">
+                <div class="robot-stage">
+                    <div class="companion-robot-wrapper">
+                        <div class="companion-robot-img-container">
+                            <model-viewer 
+                                id="mascot-3d-model"
+                                src="sandrone_rigged_free.glb" 
+                                alt="3D Rigged Character" 
+                                auto-rotate 
+                                camera-controls 
+                                ar 
+                                shadow-intensity="1.8"
+                                interaction-prompt="none"
+                                autoplay
+                                style="width: 100%; height: 100%; background: transparent;">
+                            </model-viewer>
+                        </div>
+                    </div>
+                    
+                    <div class="robot-landing-pad">
+                        <div class="pad-ring pad-outer"></div>
+                        <div class="pad-ring pad-middle"></div>
+                        <div class="pad-ring pad-inner"></div>
+                        <div class="pad-crosshair"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT PANEL: Constellation grid -->
+            <main class="panel right-panel" style="overflow-y: auto;">
+                <div class="constellation-layout">
+                    <!-- Constellation Canvas -->
+                    <div class="const-canvas-wrapper">
+                        <canvas class="const-sky" id="sky-canvas"></canvas>
+                        <div class="const-star active" id="s1" onclick="selectConstellation(1)">
+                            <span class="const-star-lbl">C1</span>
+                        </div>
+                        <div class="const-star" id="s2" onclick="selectConstellation(2)">
+                            <span class="const-star-lbl">C2</span>
+                        </div>
+                        <div class="const-star" id="s3" onclick="selectConstellation(3)">
+                            <span class="const-star-lbl">C3</span>
+                        </div>
+                        <div class="const-star" id="s4" onclick="selectConstellation(4)">
+                            <span class="const-star-lbl">C4</span>
+                        </div>
+                        <div class="const-star" id="s5" onclick="selectConstellation(5)">
+                            <span class="const-star-lbl">C5</span>
+                        </div>
+                        <div class="const-star" id="s6" onclick="selectConstellation(6)">
+                            <span class="const-star-lbl">C6</span>
+                        </div>
+                    </div>
+
+                    <!-- Details Card -->
+                    <div class="const-detail-panel" id="details-card">
+                        <!-- Dynamic output -->
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- ── BOTTOM STATUS BAR & PRIMARY CTA ── -->
+        <footer id="bottom-bar">
+            <div class="bottom-left-decor">
+                <span class="decor-line-title">ENGINEERING INTELLIGENCE</span>
+                <span class="decor-line-sub">SYS_STATUS: READY // DB_GRID_LINK: ESTABLISHED</span>
+            </div>
+            
+            <div class="bottom-center-scroll" style="visibility: hidden;">
+                <span class="scroll-mouse-icon">🖱️</span>
+                <span class="scroll-label">SCROLL</span>
+            </div>
+
+            <div class="bottom-right-cta">
+                <a href="index.html?bypass=true" class="enter-realm-cta" style="text-decoration: none; display: flex; align-items: center; justify-content: center; height: 100%;">
+                    <div class="cta-inner-content">
+                        <div class="cta-text-block">
+                            <span class="cta-title-main">BACK TO CHAMBER</span>
+                            <span class="cta-sub-main">Exit Active View ◈</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="home-script.js"></script>
+    <script>
+        const PROJECT_DATA = {
+            1: {
+                cNum: "Constellation Level 1",
+                title: "Track Inspection Mini-Robot",
+                tag: "Autonomous Systems",
+                desc: "A solar-powered autonomous mini-robot engineered to detect railway track cracks. Uses IoT telemetry interfaces and custom microcontrollers to capture grid data locally and raise safety alerts.",
+                tech: ["Arduino", "Sensor Arrays", "Solar Tracking", "IoT Telemetry"],
+                unlocked: "UNLOCKED // SYSTEM DEPLOYED"
+            },
+            2: {
+                cNum: "Constellation Level 2",
+                title: "RescueWist Smart SOS Wearable",
+                tag: "IoT & Public Safety",
+                desc: "An intelligent, voice-triggered SOS wearable safety bracelet. Employs speech recognition modules and sensor integration to automatically capture distress signals and transmit location beacons.",
+                tech: ["Speech Recognition", "GPS Module", "ESP32", "LiPo Circuits"],
+                unlocked: "UNLOCKED // INTELLECT DEPLOYED"
+            },
+            3: {
+                cNum: "Constellation Level 3",
+                title: "Zentra Retail SaaS Portal",
+                tag: "Enterprise Software",
+                desc: "A multi-branch, high-throughput retail management software designed as a scalable SaaS. Integrates real-time inventory triggers, branch metrics, and cloud analytics.",
+                tech: ["Cloud Database", "SaaS Architecture", "Analytics API", "React"],
+                unlocked: "UNLOCKED // PORTAL COMPILED"
+            },
+            4: {
+                cNum: "Constellation Level 4",
+                title: "CarzNow Vehicle DBMS",
+                tag: "Data Architectures",
+                desc: "A robust relational Database Management System designed for large-scale car rental administration. Features optimized queries, ACID transactions, and modular control blocks.",
+                tech: ["SQL Server", "DBMS Design", "ACID Modules", "Relational Indexes"],
+                unlocked: "UNLOCKED // DB LEDGER MOUNTED"
+            },
+            5: {
+                cNum: "Constellation Level 5",
+                title: "Blockchain Solar Air Purifier",
+                tag: "CleanTech & Web3",
+                desc: "A decentralized, solar-powered air purification unit integrated with blockchain technology. Tracks particulate filtration data and posts metrics to a public ledger.",
+                tech: ["Blockchain API", "Particulate Sensor", "Solar Tracking", "IPFS Node"],
+                unlocked: "UNLOCKED // MSME PRODUCT NODE"
+            },
+            6: {
+                cNum: "Constellation Level 6",
+                title: "BioRespira Spirulina Tower",
+                tag: "BioTelemetry Systems",
+                desc: "An innovative biochemical filter tower utilizing Spirulina microalgae arrays to absorb airborne pollutants and generate clean oxygen, monitored via ESP sensor nodes.",
+                tech: ["Bioreactor Cells", "ESP32-CAM", "Oxygen Telemetry", "CleanTech"],
+                unlocked: "UNLOCKED // MAX CONSTELLATION NODE"
+            }
+        };
+
+        const canvas = document.getElementById('sky-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+            drawConnections();
+        }
+
+        function drawConnections() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const getPos = (id) => {
+                const el = document.getElementById(id);
+                if (!el) return null;
+                const parentRect = el.parentElement.getBoundingClientRect();
+                const rect = el.getBoundingClientRect();
+                return {
+                    x: rect.left - parentRect.left + rect.width/2,
+                    y: rect.top - parentRect.top + rect.height/2
+                };
+            };
+
+            const p1 = getPos('s1');
+            const p2 = getPos('s2');
+            const p3 = getPos('s3');
+            const p4 = getPos('s4');
+            const p5 = getPos('s5');
+            const p6 = getPos('s6');
+
+            if (!p1 || !p2 || !p3 || !p4 || !p5 || !p6) return;
+
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.lineTo(p3.x, p3.y);
+            ctx.lineTo(p4.x, p4.y);
+            ctx.lineTo(p5.x, p5.y);
+            ctx.lineTo(p6.x, p6.y);
+            ctx.lineTo(p1.x, p1.y); 
+            
+            ctx.strokeStyle = 'rgba(0, 240, 255, 0.3)';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([4, 3]);
+            ctx.stroke();
+
+            // Highlight ring around active
+            const activeNode = document.querySelector('.const-star.active');
+            if (activeNode) {
+                const actPos = getPos(activeNode.id);
+                ctx.beginPath();
+                ctx.arc(actPos.x, actPos.y, 25, 0, Math.PI * 2);
+                ctx.strokeStyle = 'rgba(0, 240, 255, 0.2)';
+                ctx.fillStyle = 'rgba(0, 240, 255, 0.04)';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([]);
+                ctx.fill();
+                ctx.stroke();
+            }
+        }
+
+        function selectConstellation(num) {
+            document.querySelectorAll('.const-star').forEach(el => el.classList.remove('active'));
+            document.getElementById(`s${num}`).classList.add('active');
+
+            const data = PROJECT_DATA[num];
+            let techHtml = '';
+            data.tech.forEach(t => {
+                techHtml += `<span class="cd-tech-tag">${t}</span>`;
+            });
+
+            const content = `
+                <div class="cd-header">
+                    <span class="cd-lvl">${data.cNum}</span>
+                    <h3 class="cd-title">${data.title}</h3>
+                    <span class="cd-tag">${data.tag}</span>
+                </div>
+
+                <div class="cd-section-title">Core Parameters</div>
+                <p class="cd-desc">${data.desc}</p>
+
+                <div class="cd-section-title">Engines & Tech</div>
+                <div class="cd-tech-list">
+                    ${techHtml}
+                </div>
+
+                <div style="margin-top: 15px;">
+                    <div class="cd-unlock-badge">
+                        <span>⚡</span> ${data.unlocked}
+                    </div>
+                </div>
+            `;
+            document.getElementById('details-card').innerHTML = content;
+            drawConnections();
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Setup base64 3D loader
+        document.addEventListener('DOMContentLoaded', () => {
+            selectConstellation(1);
+            setTimeout(resizeCanvas, 300);
+            
+            const viewer = document.getElementById('mascot-3d-model');
+            if (viewer && typeof MODEL_BASE64 !== 'undefined') {
+                try {
+                    const parts = MODEL_BASE64.split(',');
+                    const mime = parts[0].match(/:(.*?);/)[1];
+                    const base64Data = parts[1];
+                    const byteCharacters = atob(base64Data);
+                    const byteNumbers = new Array(byteCharacters.length);
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+                    const blob = new Blob([byteArray], {type: mime});
+                    const blobUrl = URL.createObjectURL(blob);
+                    viewer.src = blobUrl;
+                } catch (e) {
+                    viewer.src = "sandrone_rigged_free.glb";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

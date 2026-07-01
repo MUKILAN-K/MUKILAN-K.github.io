@@ -1,0 +1,1230 @@
+/* ----------------------------------------------------
+   Core Custom Properties & Aesthetic Token System
+   ---------------------------------------------------- */
+:root {
+    /* DEFAULT: LIGHT MODE (Day Realm) — High Contrast */
+    --bg-color: #dce6f5;
+    --sky-gradient: radial-gradient(circle at 40% 40%, #c8d9f0 0%, #a8c0e8 40%, #8fadd8 100%);
+    --text-primary: #0a0c14;
+    --text-secondary: rgba(10, 12, 20, 0.7);
+    --gold-glow: #9a6c10;
+    --gold-dim: rgba(154, 108, 16, 0.6);
+    
+    /* Rings & Shapes (Light Mode) — Strongly visible */
+    --ring-stroke: rgba(10, 12, 20, 0.22);
+    --orb-bg: rgba(220, 230, 245, 0.85);
+    --orb-border: rgba(10, 12, 20, 0.22);
+    --orb-shadow: rgba(10, 12, 20, 0.18);
+    --nebula-mix: multiply;
+    --nebula-opacity: 0.35;
+    --cloud-opacity: 0.6;
+    --rays-opacity: 0.55;
+    --rays-blend: multiply;
+    --stars-opacity: 0.0;
+
+    /* Saturated Rune Colors for Light Mode */
+    --color-rune-1: #0097a7; /* Deeper Cyan */
+    --color-rune-2: #e65100; /* Deep Orange */
+    --color-rune-3: #0d47a1; /* Deep Blue */
+    --color-rune-4: #2e7d32; /* Deep Green */
+    --color-rune-5: #6a1b9a; /* Deep Violet */
+
+    --font-heading: 'Syncopate', sans-serif;
+    --font-heading-decor: 'Cinzel Decorative', serif;
+    --font-body: 'Space Grotesk', sans-serif;
+    --transition-speed: 0.6s;
+}
+
+body.dark-mode {
+    /* OVERRIDE: ULTRA HIGH CONTRAST DARK MODE (8K visuals) */
+    --bg-color: #01040a;
+    --sky-gradient: radial-gradient(circle at center, #0b1836 0%, #01040a 100%);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.85);
+    --gold-glow: #f59e0b;
+    --gold-dim: rgba(245, 158, 11, 0.7);
+    
+    /* Rings & Shapes (Dark Mode) - Amplified Contrast */
+    --ring-stroke: rgba(0, 240, 255, 0.4);
+    --orb-bg: rgba(6, 12, 28, 0.9);
+    --orb-border: rgba(0, 240, 255, 0.25);
+    --orb-shadow: rgba(0, 0, 0, 0.8);
+    --nebula-mix: screen;
+    --nebula-opacity: 0.35;
+    --cloud-opacity: 0.15;
+    --rays-opacity: 0.95;
+    --rays-blend: screen;
+    --stars-opacity: 0.9;
+    
+    /* Bright/Neon Runes for Dark Mode */
+    --color-rune-1: #00f0ff;
+    --color-rune-2: #fbbf24;
+    --color-rune-3: #3b82f6;
+    --color-rune-4: #10b981;
+    --color-rune-5: #d946ef;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ----------------------------------------------------
+   Parallax Sky & Cloud Atmosphere (Genshin Style)
+   ---------------------------------------------------- */
+#gate-loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    perspective: 1000px;
+    transition: opacity 1.2s cubic-bezier(0.8, 0, 0.2, 1), transform 1.5s cubic-bezier(0.8, 0, 0.2, 1);
+}
+
+#gate-loader-container.fade-out {
+    opacity: 0;
+    transform: scale(1.3) translateZ(100px);
+    pointer-events: none;
+}
+
+.sky-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    overflow: hidden;
+    background: var(--sky-gradient);
+    transition: background var(--transition-speed);
+}
+
+/* Deep space stars layer */
+.stars-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(1.2px 1.2px at 10% 20%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 30% 60%, rgba(255,255,255,0.9), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 70% 30%, rgba(255,255,255,0.7), rgba(0,0,0,0)),
+        radial-gradient(1.2px 1.2px at 85% 75%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1.8px 1.8px at 50% 85%, rgba(229,185,114,0.6), rgba(0,0,0,0));
+    background-size: 400px 400px;
+    opacity: var(--stars-opacity);
+    animation: stars-pulsate 10s ease-in-out infinite alternate;
+    transition: opacity var(--transition-speed);
+}
+
+/* Cosmic Gas & Nebula clouds */
+.nebula-cloud {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(140px);
+    opacity: var(--nebula-opacity);
+    mix-blend-mode: var(--nebula-mix);
+    transition: opacity var(--transition-speed);
+}
+
+.nebula-violet {
+    top: 10%;
+    left: 15%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, #5b21b6 0%, transparent 80%);
+    animation: drift-nebula 30s ease-in-out infinite alternate;
+}
+
+.nebula-amber {
+    bottom: 5%;
+    right: 10%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, #d97706 0%, transparent 80%);
+    animation: drift-nebula 40s ease-in-out infinite alternate-reverse;
+}
+
+.nebula-blue {
+    top: 40%;
+    left: 50%;
+    width: 45vw;
+    height: 45vw;
+    background: radial-gradient(circle, #1d4ed8 0%, transparent 80%);
+    animation: drift-nebula 25s ease-in-out infinite alternate;
+}
+
+/* Glowing Sun Rays */
+.sun-rays {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-conic-gradient(
+        from 0deg,
+        transparent 0deg 10deg,
+        rgba(255, 255, 255, 0.005) 15deg 20deg,
+        transparent 25deg 35deg
+    );
+    opacity: var(--rays-opacity);
+    mix-blend-mode: var(--rays-blend);
+    z-index: -2;
+    transform-origin: center;
+    animation: rotate-rays 180s linear infinite;
+    pointer-events: none;
+    transition: opacity var(--transition-speed);
+}
+
+#particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Beautiful multilayered parallax clouds */
+.cloud-layer {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat-x;
+    opacity: var(--cloud-opacity);
+    pointer-events: none;
+    transition: opacity var(--transition-speed);
+}
+
+.layer-back {
+    bottom: -10%;
+    left: 0;
+    height: 50%;
+    background-image: radial-gradient(circle at 50% 100%, rgba(255,255,255,0.1) 0%, transparent 60%);
+    animation: scroll-clouds 90s linear infinite;
+    filter: blur(10px);
+}
+
+.layer-front {
+    bottom: -20%;
+    left: 0;
+    height: 60%;
+    background-image: radial-gradient(circle at 30% 120%, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+    animation: scroll-clouds-reverse 60s linear infinite;
+    filter: blur(5px);
+}
+
+/* ----------------------------------------------------
+   Concentric Portal Rings (The Gate)
+   ---------------------------------------------------- */
+.portal-wrapper {
+    position: relative;
+    width: 520px;
+    height: 520px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transform-style: preserve-3d;
+}
+
+/* SVG concentric rings styles */
+.portal-svg-rings {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    transform: translateZ(0);
+}
+
+.svg-ring {
+    fill: none;
+    stroke: var(--ring-stroke);
+    stroke-width: 0.8px;
+    transform-origin: center;
+    transition: stroke var(--transition-speed), filter var(--transition-speed), stroke-width var(--transition-speed);
+}
+
+/* Animation configurations for SVG layers */
+.outer-runes {
+    stroke-width: 1px;
+    stroke-dasharray: 20 15 5 15 40 10;
+    animation: rotate-cw 80s linear infinite;
+}
+
+.middle-segments {
+    stroke-width: 1.2px;
+    animation: rotate-ccw 55s linear infinite;
+}
+
+.middle-dots {
+    stroke-width: 2px;
+    animation: rotate-cw 40s linear infinite;
+}
+
+.inner-solid {
+    stroke: var(--ring-stroke);
+    stroke-width: 1.5px;
+    animation: rotate-ccw 25s linear infinite;
+    transition: stroke var(--transition-speed);
+}
+
+/* Loaded & Pulsing Gate Glow */
+#gate-loader-container.loaded .outer-runes {
+    stroke: rgba(229, 185, 114, 0.35);
+    filter: drop-shadow(0 0 4px var(--gold-dim));
+}
+
+#gate-loader-container.loaded .middle-segments {
+    stroke: rgba(229, 185, 114, 0.55);
+    filter: drop-shadow(0 0 6px var(--gold-dim));
+}
+
+#gate-loader-container.loaded .middle-dots {
+    stroke: rgba(229, 185, 114, 0.7);
+    filter: drop-shadow(0 0 8px var(--gold-glow));
+}
+
+#gate-loader-container.loaded .inner-solid {
+    stroke: rgba(229, 185, 114, 0.85);
+    filter: drop-shadow(0 0 10px var(--gold-glow));
+    stroke-width: 2px;
+}
+
+/* ----------------------------------------------------
+   Orbital Tech Runes (Circular placement)
+   ---------------------------------------------------- */
+.circular-symbols-orbit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.element-symbol {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--orb-bg);
+    border: 1px solid var(--orb-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    /* Orbital calculations dynamically using index */
+    transform: translate(-50%, -50%) rotate(calc(var(--index) * 72deg - 90deg)) translate(225px) rotate(calc(var(--index) * -72deg + 90deg));
+    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), background var(--transition-speed), border-color var(--transition-speed), color var(--transition-speed), box-shadow var(--transition-speed);
+    box-shadow: 0 4px 15px var(--orb-shadow);
+}
+
+.element-symbol svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.5px;
+    transition: transform 0.4s;
+}
+
+/* Active State of Orb Runes */
+.element-symbol.active {
+    color: #ffffff;
+    scale: 1.1;
+}
+
+.element-symbol.active[data-element="1"] {
+    border-color: var(--color-rune-1);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.15);
+    color: var(--color-rune-1);
+}
+
+.element-symbol.active[data-element="2"] {
+    border-color: var(--color-rune-2);
+    box-shadow: 0 0 25px rgba(255, 183, 0, 0.4), inset 0 0 10px rgba(255, 183, 0, 0.15);
+    color: var(--color-rune-2);
+}
+
+.element-symbol.active[data-element="3"] {
+    border-color: var(--color-rune-3);
+    box-shadow: 0 0 25px rgba(0, 114, 255, 0.4), inset 0 0 10px rgba(0, 114, 255, 0.15);
+    color: var(--color-rune-3);
+}
+
+.element-symbol.active[data-element="4"] {
+    border-color: var(--color-rune-4);
+    box-shadow: 0 0 25px rgba(57, 255, 20, 0.4), inset 0 0 10px rgba(57, 255, 20, 0.15);
+    color: var(--color-rune-4);
+}
+
+.element-symbol.active[data-element="5"] {
+    border-color: var(--color-rune-5);
+    box-shadow: 0 0 25px rgba(176, 38, 255, 0.4), inset 0 0 10px rgba(176, 38, 255, 0.15);
+    color: var(--color-rune-5);
+}
+
+/* Pulsing subtle rotations once loaded */
+#gate-loader-container.loaded .element-symbol {
+    animation: float-symbols 6s ease-in-out infinite alternate;
+    /* staggered float delays */
+    animation-delay: calc(var(--index) * -1.2s);
+}
+
+/* ----------------------------------------------------
+   Portal Core (Center Interactive Zone)
+   ---------------------------------------------------- */
+.portal-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 10;
+    cursor: pointer;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    pointer-events: none; /* Initially locked */
+}
+
+/* Active Core: hoverable/touchable */
+#gate-loader-container.loaded .portal-core {
+    pointer-events: auto; /* Enable touch after load */
+}
+
+/* Core background glow */
+.portal-core-glow-layer {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(229, 185, 114, 0) 0%, rgba(229, 185, 114, 0) 70%);
+    transition: background 0.8s, transform 0.8s;
+    z-index: -1;
+}
+
+/* Core Hover / Touch Effect */
+#gate-loader-container.loaded .portal-core:hover {
+    transform: translate(-50%, -50%) scale(1.08);
+    background: radial-gradient(circle, rgba(229, 185, 114, 0.08) 0%, rgba(229, 185, 114, 0.02) 65%);
+}
+
+#gate-loader-container.loaded .portal-core:hover .portal-core-glow-layer {
+    background: radial-gradient(circle, rgba(229, 185, 114, 0.15) 0%, rgba(229, 185, 114, 0.05) 50%, transparent 75%);
+    transform: scale(1.3);
+}
+
+.realm-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+    pointer-events: none;
+    transition: transform 0.6s, text-shadow 0.6s, color 0.6s;
+}
+
+.word-small {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.4em;
+    color: var(--text-secondary);
+    margin-bottom: 0.4rem;
+}
+
+.word-large {
+    color: var(--text-primary);
+    text-shadow: 0 0 10px var(--gold-dim);
+    transition: color var(--transition-speed), text-shadow var(--transition-speed);
+}
+
+#gate-loader-container.loaded .word-large {
+    color: var(--text-primary);
+    text-shadow: 0 0 25px var(--gold-dim), 0 0 8px var(--gold-dim);
+}
+
+#gate-loader-container.loaded .portal-core:hover .word-large {
+    color: var(--text-primary);
+    text-shadow: 0 0 35px var(--gold-glow), 0 0 15px var(--gold-glow);
+}
+
+.status-text {
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    height: 15px;
+    transition: all 0.5s;
+}
+
+#gate-loader-container.loaded .status-text {
+    opacity: 0;
+    transform: scale(0.8) translateY(-10px);
+}
+
+/* ----------------------------------------------------
+   Circular Waves (Touch Core Indicator)
+   ---------------------------------------------------- */
+.touch-prompt {
+    position: absolute;
+    bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    transition: opacity 0.5s ease;
+}
+
+.touch-prompt.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.prompt-text {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    color: var(--gold-glow);
+    text-shadow: 0 0 8px var(--gold-dim);
+    animation: pulsate-text 2s ease-in-out infinite;
+    transition: color var(--transition-speed), text-shadow var(--transition-speed);
+}
+
+.prompt-waves {
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+.wave {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--gold-glow);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: core-wave 2.2s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+    transition: border-color var(--transition-speed);
+}
+
+.wave:nth-child(2) {
+    animation-delay: 1.1s;
+}
+
+/* ----------------------------------------------------
+   Integrated Loading Elements (Bottom)
+   ---------------------------------------------------- */
+.progress-bar-container {
+    position: absolute;
+    bottom: 40px;
+    width: 250px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    transition: opacity 0.8s;
+}
+
+.progress-bar-container.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.progress-bar-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(255,255,255,0) 0%, 
+        var(--gold-glow) 50%, 
+        rgba(255,255,255,0) 100%);
+    box-shadow: 0 0 10px var(--gold-glow);
+    transition: width 0.1s linear;
+}
+
+/* ----------------------------------------------------
+   Ambient Audio & Theme Controls (Top Right Corner)
+   ---------------------------------------------------- */
+.audio-control {
+    position: absolute;
+    top: 40px;
+    right: 96px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--orb-bg);
+    border: 1px solid var(--orb-border);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+    z-index: 105;
+    transition: all 0.3s, background var(--transition-speed), border-color var(--transition-speed), color var(--transition-speed);
+    box-shadow: 0 2px 10px var(--orb-shadow);
+}
+
+.audio-control:hover {
+    color: var(--text-primary);
+    border-color: rgba(229, 185, 114, 0.5);
+    background: rgba(229, 185, 114, 0.08);
+    box-shadow: 0 0 15px rgba(229, 185, 114, 0.15);
+}
+
+.audio-control svg {
+    width: 16px;
+    height: 16px;
+}
+
+.theme-control {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--orb-bg);
+    border: 1px solid var(--orb-border);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+    z-index: 105;
+    transition: all 0.3s, background var(--transition-speed), border-color var(--transition-speed), color var(--transition-speed);
+    box-shadow: 0 2px 10px var(--orb-shadow);
+}
+
+.theme-control:hover {
+    color: var(--text-primary);
+    border-color: rgba(229, 185, 114, 0.5);
+    background: rgba(229, 185, 114, 0.08);
+    box-shadow: 0 0 15px rgba(229, 185, 114, 0.15);
+}
+
+.theme-control svg {
+    width: 16px;
+    height: 16px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ----------------------------------------------------
+   Portal Blinding Flash & Landing Page
+   ---------------------------------------------------- */
+#portal-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
+    opacity: 0;
+    z-index: 200;
+    pointer-events: none;
+    transition: opacity 1.2s cubic-bezier(0.9, 0, 0.1, 1);
+}
+
+#portal-flash.active {
+    opacity: 1;
+}
+
+/* ----------------------------------------------------
+   Transition Stage: Welcome Screen
+   ---------------------------------------------------- */
+#welcome-stage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--sky-gradient);
+    z-index: 50;
+    opacity: 0;
+    /* Cloth pull: clip-path shrinks to a circle from full coverage to nothing */
+    clip-path: circle(150% at 50% 50%);
+    transition: opacity 1.5s ease, background var(--transition-speed), clip-path 1.8s cubic-bezier(0.55, 0, 0.85, 0) 0s;
+}
+
+#welcome-stage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at center, #102554 0%, #030816 100%);
+    z-index: 50;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+#welcome-stage.visible {
+    opacity: 1;
+}
+
+#welcome-stage.fade-out {
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
+/* Floating Ancient Pillars (CSS silhouettes) */
+.sky-pillars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 5;
+}
+.pillar {
+    position: absolute;
+    bottom: -150px;
+    width: 90px;
+    height: 90%;
+    background: linear-gradient(180deg, rgba(16,37,84,0) 0%, rgba(11,22,50,0.45) 50%, rgba(3,8,22,0.92) 100%);
+    border-left: 1.5px dashed rgba(0, 240, 255, 0.04);
+    border-right: 1.5px dashed rgba(0, 240, 255, 0.04);
+    box-shadow: inset 0 0 20px rgba(0,240,255,0.02);
+}
+.pillar.p1 { left: 8%; width: 130px; height: 95%; }
+.pillar.p2 { left: 32%; width: 85px; height: 75%; }
+.pillar.p3 { right: 10%; width: 140px; height: 98%; }
+
+/* Welcome Content (Genshin Login Style) */
+.welcome-content {
+    text-align: center;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.genshin-start-title {
+    font-family: 'Cinzel Decorative', Georgia, serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(255,255,255,0.6), 0 0 40px rgba(0,240,255,0.25);
+    margin: 0;
+}
+
+.genshin-divider-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 8px 0 15px 0;
+    opacity: 0.8;
+}
+
+.g-line {
+    width: 140px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.85), transparent);
+}
+
+.g-diamond {
+    color: rgba(255,255,255,0.85);
+    font-size: 0.7rem;
+    filter: drop-shadow(0 0 4px #ffffff);
+}
+
+.genshin-tap-begin {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.8);
+    animation: pulsate-text 2s ease-in-out infinite;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-shadow: 0 0 8px rgba(255,255,255,0.3);
+}
+
+/* Server select box */
+.genshin-server-box {
+    margin-top: 50px;
+    background: rgba(11, 22, 50, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 4px;
+    padding: 8px 35px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    transition: all 0.25s ease;
+}
+
+.genshin-server-box:hover {
+    border-color: var(--neon-cyan);
+    background: rgba(11, 22, 50, 0.9);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+}
+
+.server-check {
+    color: #10b981;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.server-name {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+}
+
+/* Glitters container */
+.glitters-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.glitter-particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255,255,255,0.9), 0 0 20px rgba(0,240,255,0.5);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Bottom details & version */
+.genshin-version-lbl {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.05em;
+    z-index: 25;
+}
+
+.genshin-bottom-icons {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 25;
+}
+
+.g-icon-circle {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+}
+
+.g-icon-circle:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--neon-cyan);
+    transform: scale(1.05);
+}
+
+/* ----------------------------------------------------
+   Interactive Black Hole Entity
+   ---------------------------------------------------- */
+.black-hole {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 140px;
+    height: 140px;
+    z-index: 60;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Born from center, expanding */
+.black-hole.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Collapsing down to absolute zero */
+.black-hole.collapse {
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.4s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.black-hole-singularity {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #000000;
+    box-shadow: 0 0 35px #000000, 
+                0 0 70px rgba(0, 0, 0, 0.9);
+    z-index: 2;
+    position: relative;
+}
+
+.black-hole-corona {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 50%;
+    border: 2.5px solid var(--gold-glow);
+    /* Distorted gravitational lensing effect */
+    box-shadow: 0 0 30px var(--gold-glow),
+                0 0 60px var(--gold-glow),
+                inset 0 0 25px var(--gold-glow);
+    animation: rotate-corona 4s linear infinite;
+    z-index: 1;
+    filter: blur(1px);
+}
+
+/* Accretion Rings & Einstein Gravitational Lensing Rings */
+.black-hole-accretion-ring {
+    position: absolute;
+    width: 170px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 240, 255, 0.6);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(168, 85, 247, 0.3);
+    pointer-events: none;
+    z-index: 3;
+}
+.black-hole-accretion-ring.r1 {
+    transform: rotate(-25deg);
+    animation: spin-cw 3.5s linear infinite;
+}
+.black-hole-accretion-ring.r2 {
+    width: 140px;
+    height: 80px;
+    border-color: rgba(168, 85, 247, 0.5);
+    transform: rotate(40deg);
+    animation: spin-ccw 4.5s linear infinite;
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.5);
+}
+
+@keyframes spin-cw {
+    from { transform: rotate(-25deg) rotate(0deg); }
+    to { transform: rotate(-25deg) rotate(360deg); }
+}
+@keyframes spin-ccw {
+    from { transform: rotate(40deg) rotate(360deg); }
+    to { transform: rotate(40deg) rotate(0deg); }
+}
+
+.gravity-particles-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 55;
+}
+
+.g-particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #00f0ff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00f0ff, 0 0 15px #a855f7;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+/* Shifting Text Gradient Keyframes */
+@keyframes rotate-gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+@keyframes glow-pulse {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.3)); }
+    50% { filter: drop-shadow(0 0 18px rgba(168, 85, 247, 0.6)); }
+}
+
+/* ---------------------------------------------------- */
+   Ultimate Stage: Portfolio Home Page
+   ---------------------------------------------------- */
+#portfolio-homepage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--sky-gradient);
+    z-index: 40;
+    opacity: 0;
+    transform: scale(1.05);
+    transition: opacity 1.8s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                transform 1.8s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                background var(--transition-speed);
+    display: flex;
+    flex-direction: column;
+}
+
+#portfolio-homepage.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.homepage-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.home-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    z-index: 10;
+}
+
+.home-nav .logo {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: var(--text-primary);
+}
+
+.nav-links-placeholder {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-pill {
+    width: 70px;
+    height: 4px;
+    background: var(--text-secondary);
+    opacity: 0.15;
+    border-radius: 2px;
+}
+
+.home-hero-placeholder {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Abstract design elements on empty homepage */
+.grid-mesh {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(189, 144, 60, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(189, 144, 60, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+body.dark-mode .grid-mesh {
+    background-image: 
+        linear-gradient(rgba(229, 185, 114, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(229, 185, 114, 0.03) 1px, transparent 1px);
+}
+
+.floating-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.06;
+    z-index: -1;
+}
+
+.orb-gold {
+    width: 300px;
+    height: 300px;
+    background: var(--gold-glow);
+    top: 10%;
+    left: 20%;
+    animation: drift-orb 20s ease-in-out infinite alternate;
+}
+
+.orb-indigo {
+    width: 400px;
+    height: 400px;
+    background: #6366f1;
+    bottom: 10%;
+    right: 15%;
+    animation: drift-orb 25s ease-in-out infinite alternate-reverse;
+}
+
+.reveal-text {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 20px var(--gold-dim);
+}
+
+.construction-message {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: var(--text-secondary);
+    max-width: 500px;
+    line-height: 1.8;
+}
+
+/* ----------------------------------------------------
+   Custom Animations Keyframes
+   ---------------------------------------------------- */
+@keyframes rotate-cw {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-ccw {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+}
+
+@keyframes rotate-rays {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes drift-nebula {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(5%, 4%) scale(1.08); }
+    100% { transform: translate(-3%, -5%) scale(0.92); }
+}
+
+@keyframes stars-pulsate {
+    0% { opacity: 0.2; }
+    50% { opacity: 0.45; }
+    100% { opacity: 0.25; }
+}
+
+@keyframes scroll-clouds {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes scroll-clouds-reverse {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes core-wave {
+    0% {
+        width: 10px;
+        height: 10px;
+        opacity: 1;
+    }
+    100% {
+        width: 80px;
+        height: 80px;
+        opacity: 0;
+    }
+}
+
+@keyframes float-symbols {
+    0% {
+        transform: translate(-50%, -50%) rotate(calc(var(--index) * 72deg - 90deg)) translate(225px) rotate(calc(var(--index) * -72deg + 90deg)) translateY(0px);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(calc(var(--index) * 72deg - 90deg)) translate(225px) rotate(calc(var(--index) * -72deg + 90deg)) translateY(-8px);
+    }
+}
+
+@keyframes pulsate-text {
+    0%, 100% { opacity: 0.7; text-shadow: 0 0 5px rgba(229, 185, 114, 0.4); }
+    50% { opacity: 1; text-shadow: 0 0 15px rgba(229, 185, 114, 0.8); }
+}
+
+@keyframes rotate-corona {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes drift-orb {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(40px, 30px) scale(1.1); }
+}
+
+/* Instant Bypass Utility to hide gate loaders instantly */
+body.instant-bypass #gate-loader-container,
+body.instant-bypass #welcome-stage,
+body.instant-bypass #portal-flash {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+body.instant-bypass .rpg-container {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+}
