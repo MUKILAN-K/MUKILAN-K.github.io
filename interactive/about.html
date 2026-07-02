@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Attributes // Mukilan K</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="home-styles.css">
+    <link rel="stylesheet" href="../shared/styles.css">
+    <link rel="stylesheet" href="../shared/home-styles.css">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <script src="model-data.js"></script>
+    <script src="../shared/model-data.js"></script>
     <style>
         .rpg-container {
             opacity: 1 !important;
@@ -44,11 +44,11 @@
             </div>
             
             <div class="profile-header-right">
-                <a href="mukilan-k-resume.pdf" download class="action-icon-btn" title="Download Resume">
+                <a href="../shared/mukilan-k-resume.pdf" download class="action-icon-btn" title="Download Resume">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
                 </a>
                 <a href="https://github.com/MUKILAN-K" target="_blank" class="action-icon-btn" title="GitHub">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61(6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
                 </a>
                 <a href="https://www.linkedin.com/in/mukilan-k-ai/" target="_blank" class="action-icon-btn" title="LinkedIn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
@@ -60,6 +60,9 @@
                     <span class="mode-icon-sun">☀️</span>
                     <span class="mode-icon-moon">🌙</span>
                 </button>
+                <a href="../index.html" class="action-icon-btn" title="Exit to Professional Home" style="border-color: var(--neon-violet); color: var(--neon-violet);">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+                </a>
             </div>
         </header>
 
@@ -112,7 +115,7 @@
                         <div class="companion-robot-img-container">
                             <model-viewer 
                                 id="mascot-3d-model"
-                                src="sandrone_rigged_free.glb" 
+                                src="../shared/sandrone_rigged_free.glb" 
                                 alt="3D Rigged Character" 
                                 auto-rotate 
                                 camera-controls 
@@ -237,8 +240,8 @@
     </div>
 
     <!-- Scripts -->
-    <script src="script.js"></script>
-    <script src="home-script.js"></script>
+    <script src="../shared/script.js"></script>
+    <script src="../shared/home-script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const viewer = document.getElementById('mascot-3d-model');
@@ -257,7 +260,7 @@
                     const blobUrl = URL.createObjectURL(blob);
                     viewer.src = blobUrl;
                 } catch (e) {
-                    viewer.src = "sandrone_rigged_free.glb";
+                    viewer.src = "../shared/sandrone_rigged_free.glb";
                 }
             }
         });

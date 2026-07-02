@@ -76,7 +76,7 @@ function init3DModel() {
             viewer.src = blobUrl;
         } catch (e) {
             console.error("Failed to parse base64 model, falling back to direct load:", e);
-            viewer.src = "sandrone_rigged_free.glb";
+            viewer.src = "../shared/sandrone_rigged_free.glb";
         }
     }
 }

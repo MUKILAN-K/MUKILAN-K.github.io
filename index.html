@@ -3,736 +3,744 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enter the LAN Realm</title>
-    <!-- Google Fonts for Epic, Majestic, and Futuristic Typographies -->
+    <title>MUKILAN K | Engineering AI Transforming Futures</title>
+    <meta name="description" content="Professional portfolio of MUKILAN K, AI & IoT Systems undergraduate and patent inventor. Specializing in Deep Learning, IoT Telemetry, and Serverless Cloud architectures.">
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Space+Grotesk:wght@300;400;600;700&family=Syncopate:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="home-styles.css">
-    <!-- Google Model Viewer Engine for Hardware-Accelerated 3D GLB Rendering -->
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <!-- Local Base64 3D model data to bypass browser file:// CORS restrictions -->
-    <script src="model-data.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="professional/styles.css">
 </head>
-<body class="dark-mode"> <!-- Default to Dark Mode -->
-    <script>
-        (function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('bypass') === 'true') {
-                document.body.classList.add('instant-bypass', 'home-active');
-                // Remove bypass query parameter from history so standard browser reloads show the intro loader
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }
-        })();
-    </script>
-    <!-- Main Entering Screen Loader (Genshin Impact Inspired, High Imagination Edition) -->
-    <div id="gate-loader-container">
-        <!-- Cosmic Sky & Cloud Parallax Layers -->
-        <div class="sky-background">
-            <div class="stars-layer"></div>
-            <div class="nebula-cloud nebula-violet"></div>
-            <div class="nebula-cloud nebula-amber"></div>
-            <div class="nebula-cloud nebula-blue"></div>
-            <div class="cloud-layer layer-back"></div>
-            <div class="cloud-layer layer-front"></div>
-            <div class="sun-rays"></div>
+<body>
+
+    <!-- ── STICKY GLASS HEADER ── -->
+    <header class="sticky-header">
+        <div class="container nav-container">
+            <div class="logo-block">
+                <div class="logo-symbol">M</div>
+                <span class="logo-text">MUKILAN K</span>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul class="nav-menu-links">
+                    <li><a href="#hero" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#achievements">Achievements</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <button id="theme-toggle-btn" class="theme-toggle-btn" title="Switch Theme">
+                    <!-- Sun Icon for switching to light theme -->
+                    <svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <!-- Moon Icon for switching to dark theme -->
+                    <svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <a href="interactive/index.html" class="btn cta-interactive-link" title="Launch 3D Environment">Interactive 3D 🚀</a>
+            </div>
         </div>
+    </header>
 
-        <!-- Flowing Vector Field Canvas for Cosmic Wind & Embers -->
-        <canvas id="particle-canvas"></canvas>
-
-        <!-- Centered Cinematic Portal Gate -->
-        <div class="portal-wrapper">
-            <!-- Detailed Mechanical/Magical SVG Rings -->
-            <svg class="portal-svg-rings" viewBox="0 0 200 200">
-                <defs>
-                    <filter id="glow-heavy" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur stdDeviation="5" result="blur" />
-                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                    </filter>
-                    <filter id="glow-gold" x="-30%" y="-30%" width="160%" height="160%">
-                        <feGaussianBlur stdDeviation="3" result="blur" />
-                        <feComponentTransfer in="blur" result="glow1">
-                            <feFuncA type="linear" slope="0.8"/>
-                        </feComponentTransfer>
-                        <feMerge>
-                            <feMergeNode in="glow1" />
-                            <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                    </filter>
-                </defs>
-                <!-- Runic/Circuit concentric paths -->
-                <circle class="svg-ring outer-runes" cx="100" cy="100" r="95"></circle>
-                <circle class="svg-ring middle-segments" cx="100" cy="100" r="82" stroke-dasharray="10 40 30 10 70 20"></circle>
-                <circle class="svg-ring middle-dots" cx="100" cy="100" r="74" stroke-dasharray="1 15"></circle>
-                <circle class="svg-ring inner-solid" cx="100" cy="100" r="64"></circle>
-            </svg>
-
-            <!-- Circularly Placed Element Symbols (Tech Runes) -->
-            <div class="circular-symbols-orbit">
-                <!-- Symbol 1: Data Node (Top-Left) -->
-                <div class="element-symbol orb-1" data-element="1" style="--index: 0;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M16 18L22 12L16 6M8 6L2 12L8 18" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+    <!-- ── HERO SECTION ── -->
+    <section id="hero" class="hero-section">
+        <div class="container hero-layout">
+            <div class="hero-text-side">
+                <div class="hero-tag">
+                    <span class="hero-tag-dot"></span>
+                    <span>Engineering AI Transforming Futures</span>
                 </div>
-                <!-- Symbol 2: Matrix Grid (Top-Right) -->
-                <div class="element-symbol orb-2" data-element="2" style="--index: 1;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M2 17L12 22L22 17M2 12L12 17L22 12" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                <h1 class="hero-title">MUKILAN K. <br><span id="hero-typing" class="typing-text"></span><span class="typing-cursor">|</span></h1>
+                <p class="hero-subtitle">AI &amp; Data Science undergraduate with experience in Artificial Intelligence, Cloud Computing, IoT, and Embedded Systems. Passionate about developing practical solutions for sustainability, public safety, and intelligent automation.</p>
+                <div class="hero-buttons">
+                    <a href="shared/mukilan-k-resume.pdf" download class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        Download Resume
+                    </a>
+                    <a href="interactive/index.html" class="btn btn-secondary">Explore Interactive Showroom ◈</a>
                 </div>
-                <!-- Symbol 3: Quantum Node (Right) -->
-                <div class="element-symbol orb-3" data-element="3" style="--index: 2;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                        <line x1="8" y1="21" x2="16" y2="21"/>
-                        <line x1="12" y1="17" x2="12" y2="21"/>
-                    </svg>
-                </div>
-                <!-- Symbol 4: Cypher Core (Bottom) -->
-                <div class="element-symbol orb-4" data-element="4" style="--index: 3;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 2v20M2 12h20"/>
-                    </svg>
-                </div>
-                <!-- Symbol 5: Neural Spark (Left) -->
-                <div class="element-symbol orb-5" data-element="5" style="--index: 4;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </div>
+            
+            <div class="hero-graphic-side">
+                <div class="robot-graphic-container">
+                    <svg class="floating-robot" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 100%; max-width: 280px; color: var(--primary-color); opacity: 0.85;">
+                        <!-- Floating Shadow (at bottom) -->
+                        <ellipse cx="100" cy="180" rx="35" ry="6" fill="var(--primary-glow)" stroke="none" class="robot-shadow" />
+                        
+                        <!-- Connectors/Joints -->
+                        <path d="M100 130 v15" stroke-dasharray="3 3"/>
+                        
+                        <!-- Body -->
+                        <rect x="70" y="90" width="60" height="45" rx="10" fill="var(--bg-card)" />
+                        <!-- Body details -->
+                        <rect x="85" y="102" width="30" height="20" rx="4" stroke-dasharray="2 2" />
+                        <circle cx="100" cy="112" r="3.5" fill="var(--primary-color)" />
+                        
+                        <!-- Head Connector -->
+                        <path d="M100 75 v15" />
+                        
+                        <!-- Head -->
+                        <rect x="75" y="40" width="50" height="35" rx="12" fill="var(--bg-card)" />
+                        <!-- Visor -->
+                        <rect x="83" y="48" width="34" height="15" rx="7" fill="var(--bg-main)" stroke="var(--primary-color)" />
+                        <!-- Visor Light / Eyes -->
+                        <circle cx="93" cy="55" r="2" fill="var(--accent-cyan)" />
+                        <circle cx="107" cy="55" r="2" fill="var(--accent-cyan)" />
+                        <path d="M97 55 h6" stroke="var(--accent-cyan)" stroke-width="0.8" />
+                        
+                        <!-- Antenna -->
+                        <path d="M100 40 v-12" />
+                        <circle cx="100" cy="25" r="3" fill="var(--accent-purple)" />
+                        
+                        <!-- Floating Wings / Thrusters -->
+                        <path d="M55 105 l10 5" />
+                        <path d="M145 105 l-10 5" />
+                        <ellipse cx="50" cy="108" rx="8" ry="4" fill="var(--bg-card)" />
+                        <ellipse cx="150" cy="108" rx="8" ry="4" fill="var(--bg-card)" />
                     </svg>
                 </div>
             </div>
+        </div>
+        <div class="hero-background-shapes"></div>
+        <canvas id="hero-interactive-canvas"></canvas>
+    </section>
 
-            <!-- Portal Core: Receives the "touching" (hover) trigger -->
-            <div class="portal-core" id="portal-touch-core">
-                <div class="portal-core-glow-layer"></div>
-                
-                <h1 class="realm-title">
-                    <span class="word-small">ENTER THE</span>
-                    <span class="word-large">LAN REALM</span>
-                </h1>
-                
-                <p class="status-text" id="status-message">Connecting...</p>
+    <!-- ── ABOUT SECTION ── -->
+    <section id="about" class="portfolio-section">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-label">01. Profile</span>
+                <h2 class="section-title">About Me</h2>
+            </div>
+            
+            <!-- Full-Width Professional Summary Card -->
+            <div class="summary-card-container scroll-reveal" data-modal="summary-card" style="cursor: pointer; background-color: var(--bg-card); border: 1px solid var(--border-color); padding: 30px; border-radius: 12px; margin-bottom: 40px; box-shadow: var(--card-shadow); transition: var(--transition-smooth);">
+                <span style="font-size: 0.8rem; color: var(--primary-color); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 8px;">Professional Summary</span>
+                <p style="font-size: 1.08rem; line-height: 1.6; color: var(--text-primary); margin: 0; font-weight: 500;">
+                    AI &amp; Data Science undergraduate with experience in Artificial Intelligence, Cloud Computing, IoT, and Embedded Systems. Passionate about developing practical solutions for sustainability, public safety, and intelligent automation.
+                </p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-bio">
 
-                <!-- Touch Prompt (Appears after loaded) -->
-                <div class="touch-prompt hidden" id="touch-prompt">
-                    <div class="prompt-waves">
-                        <div class="wave"></div>
-                        <div class="wave"></div>
+                    <p>Currently pursuing a B.Tech in Artificial Intelligence &amp; Data Science at K Ramakrishnan College of Technology. I score top tiers academically (B.Tech CGPA 8.42) while managing multi-branch internships and patent filings. As a key inventor, I have registered 14 intellectual property patents (11 utility, 3 industrial designs) covering custom sensors and smart assistive mechatronics.</p>
+                    
+                    <h3 style="font-family: var(--font-heading); margin: 30px 0 15px 0; color: var(--text-primary); font-size: 1.25rem;">Academic Path</h3>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div style="background-color: var(--bg-card); border: 1px solid var(--border-color); padding: 18px; border-radius: 8px; cursor: pointer;" data-modal="edu-btech">
+                            <span style="font-size: 0.8rem; color: var(--primary-color); font-weight: 700;">2023 - PRESENT</span>
+                            <h4 style="font-size: 1rem; color: var(--text-primary); margin: 5px 0;">B.Tech - Artificial Intelligence and Data Science</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">K Ramakrishnan College of Technology (CGPA: 8.42/10 till 5th Semester)</p>
+                        </div>
+                        <div style="background-color: var(--bg-card); border: 1px solid var(--border-color); padding: 18px; border-radius: 8px; cursor: pointer;" data-modal="edu-hsc">
+                            <span style="font-size: 0.8rem; color: var(--primary-color); font-weight: 700;">GRADUATED</span>
+                            <h4 style="font-size: 1rem; color: var(--text-primary); margin: 5px 0;">Higher Secondary School (Class XII)</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">St. Antony's Higher Secondary School (Aggregate score: 86.5%)</p>
+                        </div>
                     </div>
-                    <span class="prompt-text">TOUCH THE CORE</span>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="about-stat-card" data-modal="stat-patents" style="cursor: pointer;">
+                        <div class="stat-num"><span>14</span></div>
+                        <div class="stat-lbl">Patents Filed</div>
+                    </div>
+                    <div class="about-stat-card" data-modal="stat-cgpa" style="cursor: pointer;">
+                        <div class="stat-num"><span>8.42</span></div>
+                        <div class="stat-lbl">B.Tech CGPA Score</div>
+                    </div>
+                    <div class="about-stat-card" data-modal="stat-languages" style="cursor: pointer;">
+                        <div class="stat-num"><span>3</span></div>
+                        <div class="stat-lbl">Languages Known</div>
+                    </div>
+                    <div class="about-stat-card" data-modal="stat-msme" style="cursor: pointer;">
+                        <div class="stat-num"><span>5L</span></div>
+                        <div class="stat-lbl">MSME Capital Grants</div>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Theme Toggle Switch (Top-Right Corner) -->
-        <div class="theme-control" id="gate-theme-toggle" title="Switch Theme">
-            <!-- Sun Icon (shown in Dark mode to switch to Light) -->
-            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="5"/>
-                <line x1="12" y1="1" x2="12" y2="3"/>
-                <line x1="12" y1="21" x2="12" y2="23"/>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                <line x1="1" y1="12" x2="3" y2="12"/>
-                <line x1="21" y1="12" x2="23" y2="12"/>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-            </svg>
-            <!-- Moon Icon (shown in Light mode to switch to Dark) -->
-            <svg class="icon-moon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-            </svg>
+    <!-- ── SKILLS SECTION ── -->
+    <section id="skills" class="portfolio-section">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-label">02. Capabilities</span>
+                <h2 class="section-title">Skills &amp; Technologies</h2>
+            </div>
+            <div class="skills-wrapper">
+                <!-- Card 1 -->
+                <div class="skills-card" data-modal="skill-ml" style="cursor: pointer;">
+                    <div class="skills-icon" style="color: var(--accent-purple);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 32px; height: 32px; display: block;"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v12M6 12h12"/></svg>
+                    </div>
+                    <h3 class="skills-cat-title">Programming &amp; AI/ML</h3>
+                    <p class="skills-cat-desc">Constructing algorithms, deploying quantized model parameters, and scripting telemetry filters.</p>
+                    <div class="skills-tags-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Speech Recognition</span>
+                        <span class="skill-tag">TensorFlow Lite</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="skills-card" data-modal="skill-iot" style="cursor: pointer;">
+                    <div class="skills-icon" style="color: var(--accent-cyan);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 32px; height: 32px; display: block;"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"/></svg>
+                    </div>
+                    <h3 class="skills-cat-title">IoT &amp; Embedded Systems</h3>
+                    <p class="skills-cat-desc">Authoring microcontroller firmware and designing customized sensor array loops.</p>
+                    <div class="skills-tags-list">
+                        <span class="skill-tag">ESP32-CAM</span>
+                        <span class="skill-tag">Arduino</span>
+                        <span class="skill-tag">Sensor Integration</span>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="skills-card" data-modal="skill-cloud" style="cursor: pointer;">
+                    <div class="skills-icon" style="color: var(--accent-emerald);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 32px; height: 32px; display: block;"><path d="M17.5 19A3.5 3.5 0 0 0 21 15.5c0-2.79-2.54-4.5-5-4.5-.48 0-.89-.18-1.25-.51A7 7 0 1 0 3.5 15.5c0 1.93 1.57 3.5 3.5 3.5h10.5z"/></svg>
+                    </div>
+                    <h3 class="skills-cat-title">Cloud &amp; Developer Tools</h3>
+                    <p class="skills-cat-desc">Architecting backend database servers, containerized pipelines, and hosting structures.</p>
+                    <div class="skills-tags-list">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">IBM Cloud</span>
+                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">Supabase</span>
+                        <span class="skill-tag">Netlify</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Hugging Face</span>
+                        <span class="skill-tag">Blender</span>
+                        <span class="skill-tag">Proteus</span>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <!-- Ambient Sound Control -->
-        <div class="audio-control" id="audio-toggle">
-            <svg class="icon-sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M11 5L6 9H2v6h4l5 4V5z"/>
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
-            </svg>
-            <svg class="icon-sound-off hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M11 5L6 9H2v6h4l5 4V5z"/>
-                <line x1="23" y1="9" x2="17" y2="15"/>
-                <line x1="17" y1="9" x2="23" y2="15"/>
-            </svg>
+    <!-- ── PROJECTS SECTION ── -->
+    <section id="projects" class="portfolio-section">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-label">03. Portfolio</span>
+                <h2 class="section-title">Projects &amp; Inventions</h2>
+            </div>
+            <div class="projects-grid">
+                <!-- Project 1: RescueWrist -->
+                <div class="project-card" data-modal="project-rescuewrist" style="cursor: pointer;">
+                    <div class="proj-header">
+                        <span class="proj-tag-badge">AI &amp; Safety</span>
+                        <button class="proj-icon-link" aria-label="Open project details" style="background: none; border: none; cursor: pointer; padding: 0;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                        </button>
+                    </div>
+                    <div>
+                        <h3 class="proj-title">RescueWrist</h3>
+                        <p class="proj-desc" style="font-size: 1.02rem; line-height: 1.5; color: var(--text-secondary); margin-bottom: 20px;">AI-powered SOS wearable for women safety.</p>
+                    </div>
+                    <div class="proj-tech-tags">
+                        <span class="tech-tag">ESP32</span>
+                        <span class="tech-tag">Speech Recognition</span>
+                        <span class="tech-tag">GPS Module</span>
+                        <span class="tech-tag">Embedded ML</span>
+                    </div>
+                </div>
+                <!-- Project 2: Railway Crack Detection Robot -->
+                <div class="project-card" data-modal="project-trackrobot" style="cursor: pointer;">
+                    <div class="proj-header">
+                        <span class="proj-tag-badge">Robotics</span>
+                        <button class="proj-icon-link" aria-label="Open project details" style="background: none; border: none; cursor: pointer; padding: 0;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                        </button>
+                    </div>
+                    <div>
+                        <h3 class="proj-title">Railway Crack Detection Robot</h3>
+                        <p class="proj-desc" style="font-size: 1.02rem; line-height: 1.5; color: var(--text-secondary); margin-bottom: 20px;">Solar-powered autonomous railway inspection system.</p>
+                    </div>
+                    <div class="proj-tech-tags">
+                        <span class="tech-tag">Solar Tracking</span>
+                        <span class="tech-tag">Ultrasonic Array</span>
+                        <span class="tech-tag">Arduino Core</span>
+                        <span class="tech-tag">Sensor Integration</span>
+                    </div>
+                </div>
+                <!-- Project 3: Zentra -->
+                <div class="project-card" data-modal="project-zentra" style="cursor: pointer;">
+                    <div class="proj-header">
+                        <span class="proj-tag-badge">SaaS Cloud</span>
+                        <button class="proj-icon-link" aria-label="Open project details" style="background: none; border: none; cursor: pointer; padding: 0;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                        </button>
+                    </div>
+                    <div>
+                        <h3 class="proj-title">Zentra</h3>
+                        <p class="proj-desc" style="font-size: 1.02rem; line-height: 1.5; color: var(--text-secondary); margin-bottom: 20px;">Retail management SaaS platform.</p>
+                    </div>
+                    <div class="proj-tech-tags">
+                        <span class="tech-tag">React.js</span>
+                        <span class="tech-tag">Supabase</span>
+                        <span class="tech-tag">Analytical APIs</span>
+                        <span class="tech-tag">SaaS Core</span>
+                    </div>
+                </div>
+                <!-- Project 4: CarzNow -->
+                <div class="project-card" data-modal="project-carznow" style="cursor: pointer;">
+                    <div class="proj-header">
+                        <span class="proj-tag-badge">Database</span>
+                        <button class="proj-icon-link" aria-label="Open project details" style="background: none; border: none; cursor: pointer; padding: 0;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                        </button>
+                    </div>
+                    <div>
+                        <h3 class="proj-title">CarzNow</h3>
+                        <p class="proj-desc" style="font-size: 1.02rem; line-height: 1.5; color: var(--text-secondary); margin-bottom: 20px;">Car rental database management system.</p>
+                    </div>
+                    <div class="proj-tech-tags">
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">DBMS</span>
+                        <span class="tech-tag">Schema Design</span>
+                    </div>
+                </div>
+                <!-- Project 5: SmartAir -->
+                <div class="project-card" data-modal="project-purifier" style="cursor: pointer;">
+                    <div class="proj-header">
+                        <span class="proj-tag-badge">Blockchain</span>
+                        <button class="proj-icon-link" aria-label="Open project details" style="background: none; border: none; cursor: pointer; padding: 0;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                        </button>
+                    </div>
+                    <div>
+                        <h3 class="proj-title">SmartAir</h3>
+                        <p class="proj-desc" style="font-size: 1.02rem; line-height: 1.5; color: var(--text-secondary); margin-bottom: 20px;">Solar-powered decentralized air purifier with blockchain monitoring.</p>
+                    </div>
+                    <div class="proj-tech-tags">
+                        <span class="tech-tag">Solidity</span>
+                        <span class="tech-tag">Solar Charging</span>
+                        <span class="tech-tag">Air Purifier</span>
+                        <span class="tech-tag">Ledger Database</span>
+                    </div>
+                </div>
+                <!-- Project 6: BioRespira -->
+                <div class="project-card" data-modal="project-biorespira" style="cursor: pointer;">
+                    <div class="proj-header">
+                        <span class="proj-tag-badge">BioTelemetry</span>
+                        <button class="proj-icon-link" aria-label="Open project details" style="background: none; border: none; cursor: pointer; padding: 0;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                        </button>
+                    </div>
+                    <div>
+                        <h3 class="proj-title">BioRespira</h3>
+                        <p class="proj-desc" style="font-size: 1.02rem; line-height: 1.5; color: var(--text-secondary); margin-bottom: 20px;">Spirulina-based environmental purification system.</p>
+                    </div>
+                    <div class="proj-tech-tags">
+                        <span class="tech-tag">Microalgae Node</span>
+                        <span class="tech-tag">ESP32-CAM</span>
+                        <span class="tech-tag">Gas Sensor</span>
+                        <span class="tech-tag">Biotech</span>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <!-- Subtly hidden progress bar integrated at the very bottom -->
-        <div class="progress-bar-container">
-            <div class="progress-bar-fill" id="loader-progress"></div>
+    <!-- ── EXPERIENCE SECTION ── -->
+    <section id="experience" class="portfolio-section">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-label">04. Timeline</span>
+                <h2 class="section-title">Work Experience &amp; Internships</h2>
+            </div>
+            <div class="timeline-wrapper">
+                <div class="timeline-line"></div>
+                
+                <!-- Role 1 -->
+                <div class="timeline-step">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card" data-modal="exp-brand" style="cursor: pointer;">
+                        <div class="time-meta">
+                            <span class="time-date">RECENT</span>
+                            <span class="time-comp">Remote Recruiters Philippines</span>
+                        </div>
+                        <h3 class="time-role">Brand Ambassador</h3>
+                        <p class="time-desc">Managed representative channels and coordinated digital pipelines connecting recruiting teams globally.</p>
+                    </div>
+                </div>
+
+                <!-- Role 2 -->
+                <div class="timeline-step">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card" data-modal="exp-greenskill" style="cursor: pointer;">
+                        <div class="time-meta">
+                            <span class="time-date">INTERNSHIP</span>
+                            <span class="time-comp">GreenSkill AI (Edunet &amp; SHELL)</span>
+                        </div>
+                        <h3 class="time-role">AI Intern</h3>
+                        <p class="time-desc">Developed machine learning forecasting models and sensor telemetry programs under SHELL sustainability frameworks.</p>
+                    </div>
+                </div>
+
+                <!-- Role 3 -->
+                <div class="timeline-step">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card" data-modal="exp-ibm" style="cursor: pointer;">
+                        <div class="time-meta">
+                            <span class="time-date">INTERNSHIP</span>
+                            <span class="time-comp">IBM Cloud (Edunet + IBM)</span>
+                        </div>
+                        <h3 class="time-role">Cloud Intern</h3>
+                        <p class="time-desc">Architected scalable serverless microservices and explored container deployment arrays on IBM Cloud networks.</p>
+                    </div>
+                </div>
+
+                <!-- Role 4 -->
+                <div class="timeline-step">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card" data-modal="exp-inexus" style="cursor: pointer;">
+                        <div class="time-meta">
+                            <span class="time-date">INTERNSHIP</span>
+                            <span class="time-comp">Inexus Developer Hub</span>
+                        </div>
+                        <h3 class="time-role">Wix Web Developer Intern</h3>
+                        <p class="time-desc">Constructed customized database integrations and responsive interface layouts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── ACHIEVEMENTS SECTION ── -->
+    <section id="achievements" class="portfolio-section">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-label">05. Recognition</span>
+                <h2 class="section-title">Achievements</h2>
+            </div>
+            <div class="ach-grid">
+                <!-- Ach 1: MSME -->
+                <div class="ach-card" data-modal="ach-msme" style="cursor: pointer;">
+                    <div class="ach-icon-box" style="color: var(--accent-emerald);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px; display: block;"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M16 8h-6a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2zM12 2v2M12 20v2"/></svg>
+                    </div>
+                    <div class="ach-details">
+                        <h3 class="ach-card-title">MSME Grant Recipient (₹5 Lakhs)</h3>
+                        <p class="ach-card-desc">Developed AI, IoT, and renewable-energy solutions under Orchid Solutions venture.</p>
+                    </div>
+                </div>
+                <!-- Ach 2: Design Patents -->
+                <div class="ach-card" data-modal="ach-design-patents" style="cursor: pointer;">
+                    <div class="ach-icon-box" style="color: var(--accent-purple);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px; display: block;"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                    <div class="ach-details">
+                        <h3 class="ach-card-title">Design Patents (3)</h3>
+                        <p class="ach-card-desc" style="margin-bottom: 10px;">Officially registered industrial designs. Click to view certifications:</p>
+                        <div style="display: flex; flex-direction: column; gap: 6px;">
+                            <a href="certificates/patent/PATENT_2_WATER BOTTLE.pdf" target="_blank" class="channel-val" style="font-size: 0.85rem; text-decoration: underline;">◈ Smart Water Bottle Design</a>
+                            <a href="certificates/patent/PATENT_3_SAND SEPARATOR MACHINE.pdf" target="_blank" class="channel-val" style="font-size: 0.85rem; text-decoration: underline;">◈ Sand Siever Design</a>
+                            <a href="certificates/patent/PATENT_1_BRICK LIFTING TOOL.pdf" target="_blank" class="channel-val" style="font-size: 0.85rem; text-decoration: underline;">◈ Brick Holder Design</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ach 3: Published Utility Patents -->
+                <div class="ach-card" data-modal="ach-utility-patents" style="cursor: pointer;">
+                    <div class="ach-icon-box" style="color: var(--primary-color);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px; display: block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                    </div>
+                    <div class="ach-details">
+                        <h3 class="ach-card-title">Published Utility Patents (11)</h3>
+                        <p class="ach-card-desc">Utility patents published under Indian Patent Office &amp; WIPO databases covering digital sensors and telemetry loops.</p>
+                    </div>
+                </div>
+                <!-- Ach 4: Patent Apps -->
+                <div class="ach-card" data-modal="ach-patent-apps" style="cursor: pointer;">
+                    <div class="ach-icon-box" style="color: var(--accent-cyan);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px; display: block;"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 14h6M9 18h6"/></svg>
+                    </div>
+                    <div class="ach-details">
+                        <h3 class="ach-card-title">Additional Patent Applications (4)</h3>
+                        <p class="ach-card-desc">Four additional patent applications actively filed and undergoing technical review stages.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CERTIFICATIONS SECTION ── -->
+    <section id="certifications" class="portfolio-section">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-label">06. Credentials</span>
+                <h2 class="section-title">Featured Certifications</h2>
+            </div>
+            
+            <div class="skills-wrapper" style="grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 45px;">
+                <!-- AWS Solutions Architect -->
+                <div class="skills-card scroll-reveal" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge" style="font-size: 0.7rem;">Cloud</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">AWS Solutions Architect – Associate</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Amazon Web Services</p>
+                    </div>
+                    <a href="certificates/AWS/AWS Certified Solutions Architect - Associate certificate.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <!-- Microsoft Azure Fundamentals -->
+                <div class="skills-card scroll-reveal" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge" style="font-size: 0.7rem;">Cloud</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">Microsoft Azure Fundamentals (AZ-900)</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Microsoft</p>
+                    </div>
+                    <a href="certificates/MUKILAN K -SIMPLILEARN/Microsoft Azure Fundamentals.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <!-- Microsoft Certified Azure Administrator -->
+                <div class="skills-card scroll-reveal" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge" style="font-size: 0.7rem;">Cloud</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">Microsoft Certified Azure Administrator</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Microsoft (AZ-104)</p>
+                    </div>
+                    <a href="certificates/MUKILAN K -SIMPLILEARN/Microsoft Certified Azure Administrator Associate AZ-104.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <!-- IBM Cloud Internship Certificate -->
+                <div class="skills-card scroll-reveal" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge" style="font-size: 0.7rem;">Cloud</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2025</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">IBM Cloud Internship Certificate</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">IBM / Edunet Build</p>
+                    </div>
+                    <a href="certificates/other certificate/IBM INTERNSHIP.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <!-- IBM Python for Data Science -->
+                <div class="skills-card scroll-reveal" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge" style="font-size: 0.7rem;">AI &amp; Data Science</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">IBM Python for Data Science</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">IBM / Simplilearn</p>
+                    </div>
+                    <a href="certificates/MUKILAN K -SIMPLILEARN/MUKILAN K-IBM PY0101EN Certificate _ Simplilearn.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <!-- NPTEL Algorithms Python -->
+                <div class="skills-card scroll-reveal" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge" style="font-size: 0.7rem;">AI &amp; Data Science</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">NPTEL – Programming, Data Structures &amp; Algorithms using Python</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">NPTEL</p>
+                    </div>
+                    <a href="certificates/other certificate/Programming, Data Structures And Algorithms Using Python.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <!-- Machine Learning Certification -->
+                <div class="skills-card scroll-reveal" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge" style="font-size: 0.7rem;">AI &amp; Data Science</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">Machine Learning Certification</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Simplilearn</p>
+                    </div>
+                    <a href="certificates/MUKILAN K -SIMPLILEARN/MUKILAN K - MACHINE LEARING.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <!-- Tata Data Visualization -->
+                <div class="skills-card scroll-reveal" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge" style="font-size: 0.7rem;">Analytics</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">Tata Data Visualization Virtual Program</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Tata / Forage</p>
+                    </div>
+                    <a href="certificates/other certificate/TATA Data VIsualization - MUKILAN K.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <!-- JLPT N5 -->
+                <div class="skills-card scroll-reveal" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge" style="font-size: 0.7rem;">Languages</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">JLPT N5 – Japanese Language Proficiency</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Japan Foundation</p>
+                    </div>
+                    <a href="certificates/other certificate/MUKILAN_K_JLPT_N5.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+            </div>
+            
+            <div style="text-align: center;">
+                <a href="certifications/index.html" class="btn btn-primary" style="padding: 14px 28px; font-weight: 700;">View All Certifications (25+)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CONTACT SECTION ── -->
+    <section id="contact" class="portfolio-section">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-label">07. Connection</span>
+                <h2 class="section-title">Get In Touch</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <p class="contact-meta-desc">Feel free to reach out to discuss hardware design, telemetry networks, or research placements. I respond to inquiries within 24 hours.</p>
+                    <div class="contact-channels">
+                        <div class="channel-card">
+                            <div class="channel-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; display: block;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+                            </div>
+                            <div class="channel-details">
+                                <span class="channel-lbl">Email Address</span>
+                                <a href="mailto:mukilan.k.ai@gmail.com" class="channel-val">mukilan.k.ai@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="channel-card">
+                            <div class="channel-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; display: block;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            </div>
+                            <div class="channel-details">
+                                <span class="channel-lbl">Phone Coordinates</span>
+                                <a href="tel:6380891939" class="channel-val">6380891939</a>
+                            </div>
+                        </div>
+                        <div class="channel-card">
+                            <div class="channel-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; display: block;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <div class="channel-details">
+                                <span class="channel-lbl">Location Coordinates</span>
+                                <span class="channel-val" style="color: var(--text-primary);">Tamil Nadu, India</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-social-links">
+                        <a href="https://github.com/MUKILAN-K" target="_blank" class="social-icon-circle" title="GitHub">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/mukilan-k-ai/" target="_blank" class="social-icon-circle" title="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                        <a href="https://leetcode.com/u/MUKILAN-K/" target="_blank" class="social-icon-circle" title="LeetCode" style="text-decoration: none;">
+                            <span style="font-size: 0.95rem; font-weight: bold; line-height: 1; display: inline-block;">LC</span>
+                        </a>
+                        <a href="https://www.hackerrank.com/profile/mukilankumanan21" target="_blank" class="social-icon-circle" title="HackerRank" style="text-decoration: none;">
+                            <span style="font-size: 0.95rem; font-weight: bold; line-height: 1; display: inline-block;">HR</span>
+                        </a>
+                        <a href="https://huggingface.co/mukilan-k" target="_blank" class="social-icon-circle" title="Hugging Face" style="text-decoration: none;">
+                            <span style="font-size: 0.95rem; font-weight: bold; line-height: 1; display: inline-block;">HF</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-form-card">
+                    <form id="recruiter-contact-form">
+                        <div class="form-grid">
+                            <div>
+                                <label class="field-label">Full Name</label>
+                                <input type="text" class="field-input" placeholder="Your name" required>
+                            </div>
+                            <div>
+                                <label class="field-label">Email Address</label>
+                                <input type="email" class="field-input" placeholder="name@company.com" required>
+                            </div>
+                        </div>
+                        <div class="form-group-full">
+                            <label class="field-label">Subject</label>
+                            <input type="text" class="field-input" placeholder="e.g. Project inquiry / Hiring" required>
+                        </div>
+                        <div class="form-group-full">
+                            <label class="field-label">Message</label>
+                            <textarea class="field-input field-textarea" rows="4" placeholder="Your message content..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit">SEND MESSAGE</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PREMIUM INTERACTIVE SHOWCASE BANNER ── -->
+    <section class="showcase-banner-section">
+        <div class="container">
+            <div class="showcase-card">
+                <div class="showcase-details">
+                    <span class="showcase-badge">Creative Showcase</span>
+                    <h3 class="showcase-title">Ready for the Cinematic Experience?</h3>
+                    <p class="showcase-desc">Enter a hardware-accelerated 3D environment featuring real-time floating holograms, customized mechanical orbits, synthetically compiled ambient soundscapes, and an interactive companion robot mascot.</p>
+                </div>
+                <div class="showcase-action">
+                    <a href="interactive/index.html" class="btn btn-showcase">Explore Interactive Chamber 🚀</a>
+                </div>
+                <div class="showcase-card-background"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── DETAILED DIALOG MODAL ── -->
+    <div id="details-modal" class="details-modal-overlay">
+        <div class="details-modal-box">
+            <button class="details-modal-close" id="modal-close-btn" aria-label="Close dialog">&times;</button>
+            <div class="details-modal-content" id="modal-content-area">
+                <!-- Dynamically loaded content -->
+            </div>
         </div>
     </div>
 
-    <!-- Blinding flash cover for scene transition -->
-    <div id="portal-flash"></div>
-
-    <!-- Transition stage: Welcome Screen (Genshin Login Style) -->
-    <div id="welcome-stage" class="hidden">
-        <!-- Floating Ancient Pillars (CSS silhouettes) -->
-        <div class="sky-pillars">
-            <div class="pillar p1"></div>
-            <div class="pillar p2"></div>
-            <div class="pillar p3"></div>
+    <!-- ── PROFESSIONAL FOOTER ── -->
+    <footer class="professional-footer">
+        <div class="container footer-layout">
+            <span class="footer-copyright">&copy; 2026 Mukilan K. All rights reserved.</span>
+            <a href="#hero" class="footer-back-to-top">Back to top ↑</a>
         </div>
+    </footer>
 
-        <div class="welcome-content" id="welcome-content">
-            <h1 class="genshin-start-title">WELCOME TO THE LAN REALM</h1>
-            <div class="genshin-divider-wrapper">
-                <span class="g-line"></span>
-                <span class="g-diamond">❖</span>
-                <span class="g-line"></span>
-            </div>
-            <div class="genshin-tap-begin" id="welcome-tap-btn">TAP TO BEGIN</div>
-            
-            <!-- Server select box -->
-            <div class="genshin-server-box">
-                <span class="server-check">✓</span>
-                <span class="server-name">LAN Core / Asia</span>
-            </div>
-        </div>
-
-        <!-- Glitters container -->
-        <div class="glitters-container" id="glitters-container"></div>
-
-        <!-- Bottom details -->
-        <div class="genshin-version-lbl">OSRELAndroid6.6.0_R45246446_S44916582_D45557904</div>
-        
-        <div class="genshin-bottom-icons">
-            <div class="g-icon-circle">⚙️</div>
-            <div class="g-icon-circle">👤</div>
-        </div>
-    </div>
-
-    <!-- Scanline overlay for CRT/Cyber feeling -->
-    <div class="hud-scanlines"></div>
-
-    <!-- Background Blueprint HUD and Parallax Dust -->
-    <div class="bg-hud-grid"></div>
-    <canvas id="neural-canvas"></canvas>
-    <div class="bg-circles"></div>
-    <div class="bg-dust"></div>
-    <div class="glow-vignette"></div>
-
-    <!-- Main RPG Profile Shell (revealed as welcome-stage collapses) -->
-    <div class="rpg-container">
-
-        <!-- ── HEADER TOP BAR ── -->
-        <header id="top-bar">
-            <div class="profile-header-left">
-                <!-- AI Core Element Logo (Genshin Style) -->
-                <div class="element-core-logo">
-                    <div class="element-icon-circle">
-                        <!-- Hydro-style AI Spark vector -->
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2L2 12h9l-1 10 10-10h-9l1-10z" fill="var(--neon-cyan)"/>
-                        </svg>
-                    </div>
-                </div>
-                <div class="profile-title-block">
-                    <div class="header-pre-title">AI Core / Mukilan K</div>
-                    <h1 class="header-name">MUKILAN K</h1>
-                </div>
-            </div>
-
-            <!-- Orbiting coordinates / tech meta (top center) -->
-            <div class="header-center-meta">
-                <span class="meta-tag">BUILDING INTELLIGENCE</span>
-                <span class="meta-separator">◈</span>
-                <span class="meta-tag">TRANSFORMING FUTURES</span>
-            </div>
-            
-            <div class="profile-header-right">
-                <!-- Action Buttons -->
-                <a href="mukilan-k-resume.pdf" download class="action-icon-btn" title="Download Resume">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                </a>
-                <a href="https://github.com/MUKILAN-K" target="_blank" class="action-icon-btn" title="GitHub">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                </a>
-                <a href="https://www.linkedin.com/in/mukilan-k-ai/" target="_blank" class="action-icon-btn" title="LinkedIn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-                </a>
-                <a href="https://huggingface.co/mukilan-k" target="_blank" class="action-icon-btn" title="Hugging Face">
-                    <span style="font-size: 1.15rem; line-height: 1; display: inline-block; vertical-align: middle;">🤗</span>
-                </a>
-                <!-- System Config Mode switch -->
-                <button id="theme-toggle" class="action-icon-btn" title="Switch Theme">
-                    <span class="mode-icon-sun">☀️</span>
-                    <span class="mode-icon-moon">🌙</span>
-                </button>
-            </div>
-        </header>
-
-        <!-- ── MAIN THREE-PANEL CORE GRID ── -->
-        <div class="rpg-grid">
-
-            <!-- 1. LEFT PANEL: NAVIGATION MENU -->
-            <aside class="panel left-panel">
-                <!-- HUD Corner Decors -->
-                <div class="hud-panel-corner top-l"></div>
-                <div class="hud-panel-corner top-r"></div>
-                <div class="hud-panel-corner bottom-l"></div>
-                <div class="hud-panel-corner bottom-r"></div>
-
-                <div class="panel-header-tag">NAVIGATION PANEL // INDEX</div>
-                
-                <div class="nav-menu">
-                    <!-- Tab 1: Attributes -->
-                    <div class="nav-item active" data-tab="about">
-                        <div class="nav-item-active-bar"></div>
-                        <div class="nav-text">
-                            <span class="nav-title">◈ Attributes</span>
-                        </div>
-                    </div>
-
-                    <!-- Tab 2: Weapons -->
-                    <div class="nav-item" data-tab="skills">
-                        <div class="nav-item-active-bar"></div>
-                        <div class="nav-text">
-                            <span class="nav-title">◈ Weapons</span>
-                        </div>
-                    </div>
-
-                    <!-- Tab 3: Artifacts -->
-                    <div class="nav-item" data-tab="patents">
-                        <div class="nav-item-active-bar"></div>
-                        <div class="nav-text">
-                            <span class="nav-title">◈ Artifacts</span>
-                        </div>
-                    </div>
-
-                    <!-- Tab 4: Constellation -->
-                    <div class="nav-item" data-tab="projects">
-                        <div class="nav-item-active-bar"></div>
-                        <div class="nav-text">
-                            <span class="nav-title">◈ Constellation</span>
-                        </div>
-                    </div>
-
-                    <!-- Tab 5: Talents -->
-                    <div class="nav-item" data-tab="achievements">
-                        <div class="nav-item-active-bar"></div>
-                        <div class="nav-text">
-                            <span class="nav-title">◈ Talents</span>
-                        </div>
-                    </div>
-
-                    <!-- Tab 6: Profile -->
-                    <div class="nav-item" data-tab="profile">
-                        <div class="nav-item-active-bar"></div>
-                        <div class="nav-text">
-                            <span class="nav-title">◈ Profile</span>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-
-            <!-- 2. CENTER PANEL: AI COMPANION MASCOT -->
-            <div class="center-panel">
-                
-                <!-- Robot Area Wrapper -->
-                <div class="robot-stage">
-                    
-                    <!-- Concentric 3D Platform Pads under Robot -->
-                    <div class="robot-landing-pad">
-                        <div class="pad-ring pad-outer"></div>
-                        <div class="pad-ring pad-middle"></div>
-                        <div class="pad-ring pad-inner"></div>
-                        <div class="pad-crosshair"></div>
-                    </div>
-
-                    <!-- Orbital Rings -->
-                    <div class="orbit-ring ring-1"></div>
-                    <div class="orbit-ring ring-2"></div>
-                    <div class="orbit-ring ring-3"></div>
-                    
-                    <!-- HIGH FIDELITY AI COMPANION ROBOT (3D WebGL GLB Model) -->
-                    <div class="companion-robot-wrapper">
-                        <div class="companion-robot-img-container">
-                            <model-viewer 
-                                src="sandrone_rigged_free.glb" 
-                                alt="3D Rigged Companion Character" 
-                                auto-rotate 
-                                camera-controls 
-                                ar 
-                                shadow-intensity="1.8"
-                                interaction-prompt="none"
-                                autoplay
-                                style="width: 100%; height: 100%; background: transparent;"
-                                id="mascot-3d-model">
-                            </model-viewer>
-                        </div>
-                    </div>
-
-                    <!-- Orbiting Interactive Holographic Screens (Blueprints / Tech details) -->
-                    <!-- Code block screen -->
-                    <div class="hologram-screen holo-1" data-magnetic>
-                        <div class="holo-border"></div>
-                        <span class="holo-symbol">&lt;/&gt;</span>
-                    </div>
-                    <!-- Energy lightning screen -->
-                    <div class="hologram-screen holo-2" data-magnetic>
-                        <div class="holo-border"></div>
-                        <span class="holo-symbol">⚡</span>
-                    </div>
-                    <!-- Core symbol screen -->
-                    <div class="hologram-screen holo-3" data-magnetic>
-                        <div class="holo-border"></div>
-                        <span class="holo-symbol">◈</span>
-                    </div>
-
-                </div><!-- end robot-stage -->
-
-                <!-- Status panel below companion -->
-                <div class="system-status-container">
-                    <div class="status-bracket-left"></div>
-                    <div class="status-bracket-right"></div>
-                    
-                    <div class="system-status-header">// PROFILE CORE COMPILER ONLINE</div>
-                    <div class="system-status-grid">
-                        <div class="status-chip chip-green">
-                            <span class="status-dot"></span>
-                            <span class="status-chip-text">CORE ONLINE</span>
-                        </div>
-                        <div class="status-chip chip-blue">
-                            <span class="status-dot"></span>
-                            <span class="status-chip-text">AI ACTIVE</span>
-                        </div>
-                        <div class="status-chip chip-purple">
-                            <span class="status-dot"></span>
-                            <span class="status-chip-text">INNOVATION MODE</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- 3. RIGHT PANEL: DYNAMIC INFORMATION BOARD -->
-            <main class="panel right-panel">
-                <!-- HUD Corner Decors -->
-                <div class="hud-panel-corner top-l"></div>
-                <div class="hud-panel-corner top-r"></div>
-                <div class="hud-panel-corner bottom-l"></div>
-                <div class="hud-panel-corner bottom-r"></div>
-
-                <div class="panel-header-tag" id="dynamic-panel-header">DIGITAL IDENTITY</div>
-                
-                <div id="info-panel-content">
-                    <!-- Tab contents will swap in dynamically via JS -->
-                </div>
-            </main>
-
-        </div><!-- end rpg-grid -->
-
-        <!-- ── BOTTOM STATUS BAR & PRIMARY CTA ── -->
-        <footer id="bottom-bar">
-            <div class="bottom-left-decor">
-                <span class="decor-line-title">ENGINEERING INTELLIGENCE</span>
-                <span class="decor-line-sub">SYS_STATUS: READY // DB_GRID_LINK: ESTABLISHED</span>
-            </div>
-            
-            <div class="bottom-center-scroll">
-                <span class="scroll-mouse-icon">🖱️</span>
-                <span class="scroll-label">SCROLL</span>
-            </div>
-
-            <div class="bottom-right-cta">
-                <!-- RPG Enterprise Gateway CTA -->
-                <button id="enter-realm-btn" class="enter-realm-cta" data-magnetic>
-                    <div class="cta-glow-pulse"></div>
-                    <div class="cta-inner-content">
-                        <div class="cta-text-block">
-                            <span class="cta-title-main">ENTER THE CHAPTER</span>
-                            <span class="cta-sub-main">Examine Details →</span>
-                        </div>
-                    </div>
-                </button>
-            </div>
-        </footer>
-
-    </div><!-- end rpg-container -->
-
-    <!-- Static templates for each tab, read by JavaScript to compile onto right panel -->
-    <div id="tab-templates" style="display: none;">
-        
-        <!-- 1. ATTRIBUTES TEMPLATE (Genshin Style) -->
-        <div data-template="about">
-            <div class="genshin-char-info">
-                <h2 class="genshin-char-name">MUKILAN K</h2>
-                <div class="genshin-stars">✦✦✦✦✦</div>
-            </div>
-            
-            <div class="genshin-divider"></div>
-
-            <div class="genshin-level-row">
-                <div class="lvl-label-block">
-                    <span class="lvl-lbl">Level</span>
-                    <span class="lvl-num">99</span>
-                    <span class="lvl-max">/ 99</span>
-                </div>
-            </div>
-            <div class="lvl-progress-bar">
-                <div class="lvl-progress-fill" style="width: 100%;"></div>
-            </div>
-
-            <!-- Stats List -->
-            <div class="genshin-stats-list">
-                <div class="stats-row">
-                    <div class="stat-left">
-                        <span class="stat-icon">❤️</span>
-                        <span class="stat-name">Neural Parameters</span>
-                    </div>
-                    <span class="stat-value">21,373</span>
-                </div>
-                <div class="stats-row">
-                    <div class="stat-left">
-                        <span class="stat-icon">⚔️</span>
-                        <span class="stat-name">Cloud Compute Nodes</span>
-                    </div>
-                    <span class="stat-value">1,865</span>
-                </div>
-                <div class="stats-row">
-                    <div class="stat-left">
-                        <span class="stat-icon">🛡️</span>
-                        <span class="stat-name">Defensible Patents</span>
-                    </div>
-                    <span class="stat-value">14</span>
-                </div>
-                <div class="stats-row">
-                    <div class="stat-left">
-                        <span class="stat-icon">🌀</span>
-                        <span class="stat-name">System Efficiency</span>
-                    </div>
-                    <span class="stat-value">98%</span>
-                </div>
-                <div class="stats-row">
-                    <div class="stat-left">
-                        <span class="stat-icon">⚡</span>
-                        <span class="stat-name">Deployments</span>
-                    </div>
-                    <span class="stat-value">240</span>
-                </div>
-            </div>
-
-            <!-- Details Capsule Button -->
-            <button class="genshin-details-btn" onclick="document.querySelector('[data-tab=skills]').click();">Details</button>
-
-            <!-- Affinity sub-card -->
-            <div class="genshin-affinity-card">
-                <div class="affinity-header">
-                    <div class="aff-left">
-                        <span class="aff-icon">💖</span>
-                        <span class="aff-name">Recruiter Affinity</span>
-                    </div>
-                    <span class="aff-val">10</span>
-                </div>
-                <div class="aff-progress-bar">
-                    <div class="aff-progress-fill" style="width: 100%;"></div>
-                </div>
-            </div>
-
-            <!-- Descriptive Clan Bio -->
-            <div class="genshin-bio-block">
-                <p>The young but highly accomplished AI engineer, head of ecological telemetry projects. Cultured and polite, he is a man of many ways and means.</p>
-            </div>
-        </div>
-
-        <!-- 2. SKILLS TEMPLATE -->
-        <div data-template="skills">
-            <h2 class="section-panel-title">TECHNICAL ARSENAL</h2>
-            <p class="section-panel-desc">A breakdown of my engineering capabilities and language masteries.</p>
-            
-            <div class="skills-scrollable">
-                <div class="skill-category">
-                    <h3 class="skill-category-title">// 01. MACHINE LEARNING &amp; DATA SCIENCE</h3>
-                    <div class="skill-bars-list">
-                        <div class="skill-progress-block">
-                            <div class="spb-info"><span>Python, PyTorch &amp; ML Pipelines</span><span>92%</span></div>
-                            <div class="spb-bar"><div class="spb-fill fill-violet" style="width: 92%"></div></div>
-                        </div>
-                        <div class="spb-info-tags">TensorFlow · PyTorch · OpenCV · pandas · Scikit-Learn</div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3 class="skill-category-title">// 02. EMBEDDED IoT ENGINEERING</h3>
-                    <div class="skill-bars-list">
-                        <div class="skill-progress-block">
-                            <div class="spb-info"><span>Firmware (C/C++) &amp; RTOS</span><span>88%</span></div>
-                            <div class="spb-bar"><div class="spb-fill fill-cyan" style="width: 88%"></div></div>
-                        </div>
-                        <div class="spb-info-tags">STM32 · ESP32 · FreeRTOS · I2C/SPI · telemetry links</div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3 class="skill-category-title">// 03. SCALABLE CLOUD &amp; INTERFACES</h3>
-                    <div class="skill-bars-list">
-                        <div class="skill-progress-block">
-                            <div class="spb-info"><span>AWS Serverless &amp; Architectures</span><span>85%</span></div>
-                            <div class="spb-bar"><div class="spb-fill fill-green" style="width: 85%"></div></div>
-                        </div>
-                        <div class="spb-info-tags">AWS Lambda · API Gateways · DynamoDB · Docker · React · Vanilla CSS</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 3. PROJECTS TEMPLATE -->
-        <div data-template="projects">
-            <h2 class="section-panel-title">FEATURED LAB SYSTEMS</h2>
-            <p class="section-panel-desc">Select works forged at the intersection of AI and cloud hardware.</p>
-            
-            <div class="projects-list-scroll">
-                <!-- Project 1 -->
-                <div class="rpg-project-card">
-                    <div class="rpc-meta">
-                        <h3 class="rpc-title">RescueWist</h3>
-                        <span class="rpc-tag badge-blue">AI SEMANTIC</span>
-                    </div>
-                    <p class="rpc-desc">Cognitive rescue framework utilizing semantic intelligence models to coordinate crisis response nodes.</p>
-                    <a href="project-rescuewist.html" class="rpc-link">EXAMINE BLUEPRINT →</a>
-                </div>
-                <!-- Project 2 -->
-                <div class="rpg-project-card">
-                    <div class="rpc-meta">
-                        <h3 class="rpc-title">BioRespira</h3>
-                        <span class="rpc-tag badge-green">IoT CLINICAL</span>
-                    </div>
-                    <p class="rpc-desc">Smart assistive ventilator equipped with high-speed sensor streams and ESP32 PID controller loops.</p>
-                    <a href="project-biorespira.html" class="rpc-link">EXAMINE BLUEPRINT →</a>
-                </div>
-                <!-- Project 3 -->
-                <div class="rpg-project-card">
-                    <div class="rpc-meta">
-                        <h3 class="rpc-title">Solar Powered Purifier</h3>
-                        <span class="rpc-tag badge-gold">CLEAN TECH</span>
-                    </div>
-                    <p class="rpc-desc">Particulate defense grid module powered by tracking solar cells and monitored via cloud telemetry.</p>
-                    <a href="project-purifier.html" class="rpc-link">EXAMINE BLUEPRINT →</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- 5. PATENTS TEMPLATE -->
-        <div data-template="patents">
-            <h2 class="section-panel-title">INNOVATION ARCHIVE</h2>
-            <p class="section-panel-desc">Defensible architectures published and submitted to patent offices.</p>
-            
-            <div class="patents-list-scroll">
-                <div class="patent-item">
-                    <div class="p-header">
-                        <span class="p-type badge-gold">UTILITY</span>
-                        <span class="p-count">11 PUBLISHED</span>
-                    </div>
-                    <h3 class="p-title">Integrated IoT Ecosystem Patents</h3>
-                    <p class="p-desc">Covers custom sensor node arrays, remote serverless handshakes, and smart power management circuits drafted for WIPO/Indian Patent Office.</p>
-                </div>
-
-                <div class="patent-item">
-                    <div class="p-header">
-                        <span class="p-type badge-blue">DESIGN</span>
-                        <span class="p-count">3 INVENTED</span>
-                    </div>
-                    <h3 class="p-title">Ergonomic Medical &amp; Eco Hardware Shells</h3>
-                    <p class="p-desc">Focuses on structural ergonomics for portable air filters, smart enclosures, and assistive medical devices.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 6. ACHIEVEMENTS TEMPLATE -->
-        <div data-template="achievements">
-            <h2 class="section-panel-title">HONOR BOARD</h2>
-            <p class="section-panel-desc">Certifications and competition trophies logged in the digital realm.</p>
-            
-            <div class="awards-grid">
-                <div class="award-card">
-                    <span class="award-icon">🎖️</span>
-                    <div class="aw-txt">
-                        <h3 class="award-title">AWS Solutions Architect</h3>
-                        <p class="award-desc">Authorized validation for designing highly-available, serverless cloud architectures.</p>
-                    </div>
-                </div>
-                <div class="award-card">
-                    <span class="award-icon">🏆</span>
-                    <div class="aw-txt">
-                        <h3 class="award-title">National Hackathon Winner</h3>
-                        <p class="award-desc">First place in Clean-Tech for deploying an environmental monitoring grid.</p>
-                    </div>
-                </div>
-                <div class="award-card">
-                    <span class="award-icon">🎓</span>
-                    <div class="aw-txt">
-                        <h3 class="award-title">Academic Merit Fellowship</h3>
-                        <p class="award-desc">Awarded for research contributions in combining deep neural nets with IoT nodes.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 6. PROFILE TEMPLATE (COMBINED JOURNEY & CONTACT) -->
-        <div data-template="profile">
-            <!-- Experience Timeline Section -->
-            <h2 class="section-panel-title">JOURNEY ARCHIVE</h2>
-            <p class="section-panel-desc">Professional deployments and research postings completed.</p>
-            
-            <div class="experience-timeline" style="margin-bottom: 30px;">
-                <div class="timeline-item">
-                    <div class="t-line"></div>
-                    <div class="t-node node-purple"></div>
-                    <div class="t-content">
-                        <h3 class="t-title">IBM Cloud Research Intern</h3>
-                        <span class="t-date">SUMMER 2025 // TOKYO / BANGALORE</span>
-                        <p class="t-desc">Architected scalable serverless microservices and explored advanced computing arrays on Kubernetes platforms.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="t-line"></div>
-                    <div class="t-node node-cyan"></div>
-                    <div class="t-content">
-                        <h3 class="t-title">AI Research Fellow</h3>
-                        <span class="t-date">2024 - 2025 // COLLEGE LABS</span>
-                        <p class="t-desc">Designed convolutional models and telemetry systems for monitoring remote ecological nodes.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="t-node node-green"></div>
-                    <div class="t-content">
-                        <h3 class="t-title">B.Tech Student in AI &amp; DS</h3>
-                        <span class="t-date">2022 - PRESENT // INVENTIONS &amp; CODE</span>
-                        <p class="t-desc">Consistently scoring top tiers while authoring utility and design patents across IoT and sustainable devices.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Separator Line -->
-            <div style="border-top: 1px dashed rgba(255,255,255,0.15); margin: 25px 0;"></div>
-
-            <!-- Contact Uplink Section -->
-            <h2 class="section-panel-title">COMMUNICATION UPLINK</h2>
-            <p class="section-panel-desc">Send an encrypted transmission to lock in a connection.</p>
-            
-            <form id="contact-form" class="contact-form-block" onsubmit="event.preventDefault(); alert('Transmission Sent!');">
-                <div class="form-row">
-                    <input type="text" placeholder="VISITOR NAME" required class="form-input">
-                    <input type="email" placeholder="EMAIL UPLINK" required class="form-input">
-                </div>
-                <input type="text" placeholder="TRANSMISSION SUBJECT" required class="form-input">
-                <textarea placeholder="MESSAGE DETAIL" rows="4" required class="form-input form-textarea"></textarea>
-                <button type="submit" class="form-submit-btn">SEND TRANSMISSION →</button>
-            </form>
-        </div>
-
-    </div><!-- end tab-templates -->
-
-    <script src="script.js"></script>
-    <script src="home-script.js"></script>
+    <!-- Scripts -->
+    <script src="professional/script.js"></script>
 </body>
 </html>

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talents & Achievements // Mukilan K</title>
+    <title>Weapons Arsenal // Mukilan K</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="home-styles.css">
+    <link rel="stylesheet" href="../shared/styles.css">
+    <link rel="stylesheet" href="../shared/home-styles.css">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <script src="model-data.js"></script>
+    <script src="../shared/model-data.js"></script>
     <style>
         .rpg-container {
             opacity: 1 !important;
@@ -17,18 +17,18 @@
         .left-panel .nav-item {
             text-decoration: none;
         }
-        .talents-layout {
+        .weapons-layout {
             display: flex;
             flex-direction: column;
             gap: 20px;
             height: 100%;
         }
-        .talents-row-list {
+        .weapons-row-list {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-        .t-item {
+        .w-item {
             background: rgba(11,22,50,0.4);
             border: 1px solid rgba(0, 240, 255, 0.15);
             border-radius: 8px;
@@ -39,93 +39,114 @@
             justify-content: space-between;
             transition: all 0.2s ease;
         }
-        .t-item:hover, .t-item.active {
+        .w-item:hover, .w-item.active {
             border-color: var(--neon-cyan);
             background: rgba(0, 240, 255, 0.08);
             box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
             transform: translateX(4px);
         }
-        .t-meta-block {
+        .w-meta-block {
             display: flex;
             flex-direction: column;
         }
-        .t-name-lbl {
+        .w-name-lbl {
             font-size: 0.98rem;
             font-weight: 700;
             color: #ffffff;
         }
-        .t-type-lbl {
+        .w-type-lbl {
             font-family: var(--font-mono);
             font-size: 0.72rem;
-            color: var(--text-sub);
+            color: var(--neon-cyan);
             margin-top: 2px;
         }
-        .t-lvl-badge {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--neon-cyan);
-            background: rgba(0,240,255,0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
+        .w-stars-badge {
+            color: #f59e0b;
+            font-size: 0.85rem;
         }
-        .t-detail-panel {
+        .w-detail-panel {
             background: rgba(11,22,50,0.3);
             border: 1.5px solid var(--border-color);
             border-radius: 12px;
             padding: 20px;
             flex: 1;
             overflow-y: auto;
+            position: relative;
         }
-        .td-header {
+        .wd-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             padding-bottom: 12px;
             margin-bottom: 15px;
         }
-        .td-type {
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            color: var(--neon-cyan);
-            text-transform: uppercase;
-        }
-        .td-title {
+        .wd-title {
             font-size: 1.3rem;
             font-weight: 700;
             color: #ffffff;
-            margin: 4px 0;
+            margin: 0;
         }
-        .td-section-title {
+        .wd-stars {
+            color: #f59e0b;
+            font-size: 1rem;
+            margin-top: 2px;
+        }
+        .wd-lvl {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            background: rgba(255,255,255,0.08);
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: #ffffff;
+        }
+        .wd-stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        .wd-stat-box {
+            display: flex;
+            flex-direction: column;
+        }
+        .wd-stat-lbl {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+        }
+        .wd-stat-val {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .wd-section-title {
             font-family: var(--font-mono);
             font-size: 0.85rem;
             color: var(--neon-cyan);
             letter-spacing: 0.05em;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             text-transform: uppercase;
         }
-        .td-desc {
+        .wd-passive-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--neon-violet);
+            margin-bottom: 6px;
+        }
+        .wd-desc {
             font-size: 0.86rem;
             line-height: 1.5;
             color: var(--text-sub);
-            margin: 0 0 15px 0;
+            margin: 0 0 10px 0;
         }
-        .td-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .td-row {
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        .td-cell {
-            padding: 8px 0;
-            font-size: 0.85rem;
-        }
-        .td-lbl {
-            color: rgba(255,255,255,0.6);
-        }
-        .td-val {
-            text-align: right;
-            font-family: var(--font-mono);
-            color: var(--neon-cyan);
-            font-weight: 600;
+        .wd-refinement {
+            font-size: 0.84rem;
+            line-height: 1.5;
+            color: var(--text-sub);
+            border-left: 2px solid var(--neon-cyan);
+            padding-left: 10px;
+            font-style: italic;
+            margin: 0;
         }
     </style>
 </head>
@@ -153,7 +174,7 @@
             </div>
             
             <div class="profile-header-right">
-                <a href="mukilan-k-resume.pdf" download class="action-icon-btn" title="Download Resume">
+                <a href="../shared/mukilan-k-resume.pdf" download class="action-icon-btn" title="Download Resume">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
                 </a>
                 <a href="https://github.com/MUKILAN-K" target="_blank" class="action-icon-btn" title="GitHub">
@@ -169,6 +190,9 @@
                     <span class="mode-icon-sun">☀️</span>
                     <span class="mode-icon-moon">🌙</span>
                 </button>
+                <a href="../index.html" class="action-icon-btn" title="Exit to Professional Home" style="border-color: var(--neon-violet); color: var(--neon-violet);">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+                </a>
             </div>
         </header>
 
@@ -182,7 +206,7 @@
                         <span class="nav-title">◈ Attributes</span>
                     </div>
                 </a>
-                <a href="skills.html" class="nav-item">
+                <a href="skills.html" class="nav-item active">
                     <span class="nav-item-active-bar"></span>
                     <div class="nav-text">
                         <span class="nav-title">◈ Weapons</span>
@@ -200,7 +224,7 @@
                         <span class="nav-title">◈ Constellation</span>
                     </div>
                 </a>
-                <a href="achievements.html" class="nav-item active">
+                <a href="achievements.html" class="nav-item">
                     <span class="nav-item-active-bar"></span>
                     <div class="nav-text">
                         <span class="nav-title">◈ Talents</span>
@@ -221,7 +245,7 @@
                         <div class="companion-robot-img-container">
                             <model-viewer 
                                 id="mascot-3d-model"
-                                src="sandrone_rigged_free.glb" 
+                                src="../shared/sandrone_rigged_free.glb" 
                                 alt="3D Rigged Character" 
                                 auto-rotate 
                                 camera-controls 
@@ -243,51 +267,51 @@
                 </div>
             </div>
 
-            <!-- RIGHT PANEL: Talents detailed grid -->
+            <!-- RIGHT PANEL: Weapons detailed grid -->
             <main class="panel right-panel" style="overflow-y: auto;">
-                <div class="talents-layout">
-                    <!-- Talents row list -->
-                    <div class="talents-row-list">
-                        <div class="t-item active" onclick="selectTalent(1)">
-                            <div class="t-meta-block">
-                                <span class="t-name-lbl">AWS Solutions Architect</span>
-                                <span class="t-type-lbl">NORMAL ATTACK // COMBAT</span>
+                <div class="weapons-layout">
+                    <!-- Weapons Selection Grid -->
+                    <div class="weapons-row-list">
+                        <div class="w-item active" onclick="selectWeapon('python')">
+                            <div class="w-meta-block">
+                                <span class="w-name-lbl">Haran Python-Blade</span>
+                                <span class="w-type-lbl">PROGRAMMING // SWORD</span>
                             </div>
-                            <span class="t-lvl-badge">Lv. 10</span>
+                            <span class="w-stars-badge">★★★★★</span>
                         </div>
-                        <div class="t-item" onclick="selectTalent(2)">
-                            <div class="t-meta-block">
-                                <span class="t-name-lbl">IBM Python Core</span>
-                                <span class="t-type-lbl">ELEMENTAL SKILL // COMBAT</span>
+                        <div class="w-item" onclick="selectWeapon('tensor')">
+                            <div class="w-meta-block">
+                                <span class="w-name-lbl">Scikit Tensor-Core</span>
+                                <span class="w-type-lbl">AI & MACHINE LEARNING</span>
                             </div>
-                            <span class="t-lvl-badge">Lv. 10</span>
+                            <span class="w-stars-badge">★★★★★</span>
                         </div>
-                        <div class="t-item" onclick="selectTalent(3)">
-                            <div class="t-meta-block">
-                                <span class="t-name-lbl">Tata Data Engine</span>
-                                <span class="t-type-lbl">ELEMENTAL BURST // COMBAT</span>
+                        <div class="w-item" onclick="selectWeapon('esp')">
+                            <div class="w-meta-block">
+                                <span class="w-name-lbl">ESP Sensor-Bow</span>
+                                <span class="w-type-lbl">IOT & EMBEDDED // BOW</span>
                             </div>
-                            <span class="t-lvl-badge">Lv. 10</span>
+                            <span class="w-stars-badge">★★★★</span>
                         </div>
-                        <div class="t-item" onclick="selectTalent(4)">
-                            <div class="t-meta-block">
-                                <span class="t-name-lbl">NPTEL Algorithms</span>
-                                <span class="t-type-lbl">PASSIVE TALENT</span>
+                        <div class="w-item" onclick="selectWeapon('cloud')">
+                            <div class="w-meta-block">
+                                <span class="w-name-lbl">Orchestration Staff</span>
+                                <span class="w-type-lbl">CLOUD & INTEGRATION</span>
                             </div>
-                            <span class="t-lvl-badge">Lv. 1</span>
+                            <span class="w-stars-badge">★★★★★</span>
                         </div>
-                        <div class="t-item" onclick="selectTalent(5)">
-                            <div class="t-meta-block">
-                                <span class="t-name-lbl">Simplilearn Data Science</span>
-                                <span class="t-type-lbl">PASSIVE TALENT</span>
+                        <div class="w-item" onclick="selectWeapon('tools')">
+                            <div class="w-meta-block">
+                                <span class="w-name-lbl">Proteus Aegis</span>
+                                <span class="w-type-lbl">DEVELOPMENT TOOLS</span>
                             </div>
-                            <span class="t-lvl-badge">Lv. 1</span>
+                            <span class="w-stars-badge">★★★★</span>
                         </div>
                     </div>
 
-                    <!-- Details Card -->
-                    <div class="t-detail-panel" id="details-card">
-                        <!-- Dynamic output -->
+                    <!-- Details Box below -->
+                    <div class="w-detail-panel" id="details-card">
+                        <!-- Filled dynamically -->
                     </div>
                 </div>
             </main>
@@ -319,106 +343,110 @@
     </div>
 
     <!-- Scripts -->
-    <script src="script.js"></script>
-    <script src="home-script.js"></script>
+    <script src="../shared/script.js"></script>
+    <script src="../shared/home-script.js"></script>
     <script>
-        const TALENT_DATA = {
-            1: {
-                type: "Normal Attack",
-                title: "AWS Solutions Architect",
-                desc: "Performs up to 5 consecutive serverless deployments. Integrates cloud storage, elastic computation blocks, and secure Virtual Private Clouds (VPC) to withstand system overheads.",
-                multipliers: [
-                    { label: "1-Stage VPC Setup Rate", val: "84.2%" },
-                    { label: "Cloud IAM Policy Defense", val: "105.8%" },
-                    { label: "Auto-Scaling Burst DMG", val: "212%" },
-                    { label: "Deployment Cooldown", val: "4.5s" }
-                ]
+        const WEAPON_DATA = {
+            python: {
+                title: "Haran Python-Blade",
+                stars: "✦✦✦✦✦",
+                type: "Sword",
+                lvl: "Lv. 90 / 90",
+                baseAtk: "608",
+                secondaryStat: "Core Algorithms: +33.1%",
+                passiveName: "Syntax Flow",
+                desc: "A legendary sword forged in the algorithm mines. Grants mastery over C, Python, and SQL databases. Increases computation throughput and script execution speed.",
+                refinement: "Refinement Rank 5: Increases programming efficiency by 40%. When compiling datasets, grants 'Automation Stack', which scales code compilation speed by 12% per layer."
             },
-            2: {
-                type: "Elemental Skill",
-                title: "IBM Python & Data Science",
-                desc: "Unleashes a local neural predictor. Computes multidimensional regressions, cleans datasets, and classifies speech prompts, triggering 'IBM Certification Glow'.",
-                multipliers: [
-                    { label: "Model Training Speed", val: "3.5x Scale" },
-                    { label: "Regressive Insight DMG", val: "172.4%" },
-                    { label: "Classification Crit Multiplier", val: "55%" },
-                    { label: "Skill Cooldown", val: "10.0s" }
-                ]
+            tensor: {
+                title: "Scikit Tensor-Core",
+                stars: "✦✦✦✦✦",
+                type: "Catalyst",
+                lvl: "Lv. 90 / 90",
+                baseAtk: "674",
+                secondaryStat: "Model Accuracy: +44.2%",
+                passiveName: "Neural Synthesis",
+                desc: "An advanced volumetric core storing predictive AI equations. Enables Speech Recognition filters, TensorFlow Lite compiles, and Scikit-learn regressions.",
+                refinement: "Refinement Rank 5: Gives +24% Elemental Accuracy Bonus. When executing speech classifications, triggers 'Deep Inference', boosting neural accuracy by 15% and lowering loss functions to 0.02."
             },
-            3: {
-                type: "Elemental Burst",
-                title: "Tata Data Analytics",
-                desc: "Summons a global analytics board mapping business insights. Processes real-time logs and extracts KPIs, triggering 'Visual Decision Storm'. Increases elemental critical DMG by 20% for all teammates.",
-                multipliers: [
-                    { label: "Dashboard Load Delay", val: "12ms" },
-                    { label: "KPI Synthesis DMG", val: "380.5%" },
-                    { label: "Telemetry Cache Expansion", val: "+24.5%" },
-                    { label: "Energy Cost", val: "60 Energy" }
-                ]
+            esp: {
+                title: "ESP Sensor-Bow",
+                stars: "✦✦✦✦",
+                type: "Bow",
+                lvl: "Lv. 80 / 80",
+                baseAtk: "510",
+                secondaryStat: "Telemetry Rate: +180s",
+                passiveName: "Wireless Pinpoint",
+                desc: "A composite bow embedded with ESP32-CAM chips and Arduino microcontrollers. Allows remote telemetry capture and sensor grid triangulation.",
+                refinement: "Refinement Rank 4: Triggers 'Edge Trigger' upon hitting an interrupt pin. Sensor logs are automatically packaged and transmitted via serial bus, increasing local cache speed by 30%."
             },
-            4: {
-                type: "Passive Talent",
-                title: "NPTEL Algorithm Mastery",
-                desc: "When constructing data trees, decreases algorithmic complexity bounds by 15%. Speeds up database lookup cycles, granting optimal memory allocations.",
-                multipliers: [
-                    { label: "Search Latency reduction", val: "-15%" },
-                    { label: "Code Coverage optimization", val: "+95%" }
-                ]
+            cloud: {
+                title: "Orchestration Staff",
+                stars: "✦✦✦✦✦",
+                type: "Polearm",
+                lvl: "Lv. 90 / 90",
+                baseAtk: "741",
+                secondaryStat: "Serverless Capacity: +51.8%",
+                passiveName: "Cloud Gate",
+                desc: "A sacred staff linking IBM Cloud, AWS, Firebase, Supabase, and Netlify pipelines. Deploys scalable, auto-healing gateway architectures.",
+                refinement: "Refinement Rank 5: Increases serverless deploy speeds by 50%. Grants 'Container Sprout', which minimizes cold start latency to 5ms and gives +20% CDN caching optimization."
             },
-            5: {
-                type: "Passive Talent",
-                title: "Simplilearn Data Science",
-                desc: "Increases the probability of predicting accurate analytics outputs by 20% on all data pipelines. Yields cleaner datasets with minimized noise factors.",
-                multipliers: [
-                    { label: "Anomaly Filter Accuracy", val: "+20%" },
-                    { label: "Dataset Cleanliness Coefficient", val: "0.98" }
-                ]
+            tools: {
+                title: "Proteus Aegis",
+                stars: "✦✦✦✦",
+                type: "Claymore / Shield",
+                lvl: "Lv. 85 / 85",
+                baseAtk: "565",
+                secondaryStat: "Sandbox Defense: +28.5%",
+                passiveName: "Developer Grid",
+                desc: "A massive alloy defense shield compiled from Hugging Face nodes, Git Version controls, MetaMask wallets, and Proteus logic circuits.",
+                refinement: "Refinement Rank 4: Upon committing code branches, casts a 'Repository Shield' absorbing up to 35% damage from merge conflicts. Speeds up collaborative commits by 25%."
             }
         };
 
-        function selectTalent(num) {
-            document.querySelectorAll('.t-item').forEach(el => el.classList.remove('active'));
+        function selectWeapon(key) {
+            document.querySelectorAll('.w-item').forEach(el => el.classList.remove('active'));
             
-            const items = document.querySelectorAll('.t-item');
+            const items = document.querySelectorAll('.w-item');
             for(let item of items) {
-                if(item.getAttribute('onclick').includes(num)) {
+                if(item.getAttribute('onclick').includes(key)) {
                     item.classList.add('active');
                 }
             }
 
-            const data = TALENT_DATA[num];
-            let attrHtml = '';
-            data.multipliers.forEach(m => {
-                attrHtml += `
-                    <tr class="td-row">
-                        <td class="td-cell td-lbl">${m.label}</td>
-                        <td class="td-cell td-val">${m.val}</td>
-                    </tr>
-                `;
-            });
-
+            const data = WEAPON_DATA[key];
             const content = `
-                <div class="td-header">
-                    <span class="td-type">${data.type}</span>
-                    <h3 class="td-title">${data.title}</h3>
+                <div class="wd-header">
+                    <div>
+                        <h3 class="wd-title">${data.title}</h3>
+                        <div class="wd-stars">${data.stars}</div>
+                        <span class="w-type-lbl">${data.type}</span>
+                    </div>
+                    <span class="wd-lvl">${data.lvl}</span>
                 </div>
 
-                <div class="td-section-title">Talent Description</div>
-                <p class="td-desc">${data.desc}</p>
+                <div class="wd-stats">
+                    <div class="wd-stat-box">
+                        <span class="wd-stat-lbl">Base ATK</span>
+                        <span class="wd-stat-val">${data.baseAtk}</span>
+                    </div>
+                    <div class="wd-stat-box" style="margin-left: 20px;">
+                        <span class="wd-stat-lbl">Secondary Stat</span>
+                        <span class="wd-stat-val" style="color: var(--neon-cyan);">${data.secondaryStat}</span>
+                    </div>
+                </div>
 
-                <div class="td-section-title">Attributes parameters</div>
-                <table class="td-table">
-                    <tbody>
-                        ${attrHtml}
-                    </tbody>
-                </table>
+                <div class="wd-section-title">Passive Ability</div>
+                <div class="wd-passive-name">${data.passiveName}</div>
+                <p class="wd-desc">${data.desc}</p>
+                <p class="wd-refinement">${data.refinement}</p>
             `;
             document.getElementById('details-card').innerHTML = content;
         }
 
         // Setup base64 3D loader
         document.addEventListener('DOMContentLoaded', () => {
-            selectTalent(1);
+            selectWeapon('python');
             const viewer = document.getElementById('mascot-3d-model');
             if (viewer && typeof MODEL_BASE64 !== 'undefined') {
                 try {
@@ -435,7 +463,7 @@
                     const blobUrl = URL.createObjectURL(blob);
                     viewer.src = blobUrl;
                 } catch (e) {
-                    viewer.src = "sandrone_rigged_free.glb";
+                    viewer.src = "../shared/sandrone_rigged_free.glb";
                 }
             }
         });

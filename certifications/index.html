@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUKILAN K | All Credentials &amp; Certifications</title>
+    <meta name="description" content="A complete registry of certifications, training workshops, and competition awards for Mukilan K.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../professional/styles.css">
+    <style>
+        .cert-header {
+            padding: 140px 0 60px 0;
+            text-align: center;
+            background-color: var(--bg-main);
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+        .cert-back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 25px;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+        }
+        .cert-back-btn:hover {
+            color: var(--primary-color);
+            transform: translateX(-4px);
+        }
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 50px 0 100px 0;
+        }
+        @media (max-width: 992px) {
+            .cert-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .cert-item-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+        .cert-item-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── STICKY GLASS HEADER ── -->
+    <header class="sticky-header">
+        <div class="container nav-container">
+            <div class="logo-block">
+                <div class="logo-symbol">M</div>
+                <span class="logo-text">MUKILAN K</span>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-menu-links">
+                    <li><a href="../index.html">Back to Home</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button id="theme-toggle-btn" class="theme-toggle-btn" title="Switch Theme">
+                    <svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <a href="../index.html" class="btn btn-secondary">Back to Profile</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ── HEADER HERO ── -->
+    <section class="cert-header">
+        <div class="container">
+            <a href="../index.html" class="cert-back-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Back to main portfolio
+            </a>
+            <h1 style="font-family: var(--font-heading); font-size: 2.75rem; font-weight: 800; color: var(--text-primary); margin-bottom: 12px;">All Credentials &amp; Certifications</h1>
+            <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 35px auto;">Explore a complete verified listing of professional certifications, workshops, paper presentations, and competition awards.</p>
+            
+            <!-- Filters -->
+            <div class="cert-filter-bar">
+                <button class="cert-filter-btn active" data-filter="all">All</button>
+                <button class="cert-filter-btn" data-filter="cloud">Cloud</button>
+                <button class="cert-filter-btn" data-filter="ai">AI</button>
+                <button class="cert-filter-btn" data-filter="analytics">Analytics</button>
+                <button class="cert-filter-btn" data-filter="languages">Languages</button>
+                <button class="cert-filter-btn" data-filter="competitions">Competitions</button>
+                <button class="cert-filter-btn" data-filter="workshops">Workshops</button>
+                <button class="cert-filter-btn" data-filter="events">Events</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── LIST GRID ── -->
+    <section style="background-color: var(--bg-main);">
+        <div class="container">
+            <div class="cert-grid" id="certifications-container">
+                
+                <!-- AWS Certifications -->
+                <div class="cert-item-card" data-category="cloud">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Cloud</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">AWS Certified Solutions Architect – Associate</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Amazon Web Services</p>
+                    </div>
+                    <a href="../certificates/AWS/AWS Certified Solutions Architect - Associate certificate.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="cloud">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Cloud</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">AWS Solutions Architect Certification (Simplilearn)</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">AWS Solutions Architect - Associate Level</p>
+                    </div>
+                    <a href="../certificates/AWS/2303811724321072-MUKILAN_K.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="cloud">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Cloud</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">AWS Cloud Technical Essentials</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">AWS / Simplilearn</p>
+                    </div>
+                    <a href="../certificates/MUKILAN K -SIMPLILEARN/AWS Cloud Technical Essentials.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="cloud">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Cloud</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">Microsoft Azure Fundamentals (AZ-900)</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Microsoft</p>
+                    </div>
+                    <a href="../certificates/MUKILAN K -SIMPLILEARN/Microsoft Azure Fundamentals.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="cloud">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Cloud</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">Microsoft Certified Azure Administrator</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Microsoft Associate AZ-104</p>
+                    </div>
+                    <a href="../certificates/MUKILAN K -SIMPLILEARN/Microsoft Certified Azure Administrator Associate AZ-104.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="cloud">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Cloud</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">Designing Azure Infrastructure Solutions (AZ-305)</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Microsoft</p>
+                    </div>
+                    <a href="../certificates/MUKILAN K -SIMPLILEARN/ms - 305.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="cloud">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Cloud</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2025</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">IBM Cloud Internship Certificate</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">IBM / Edunet Foundation</p>
+                    </div>
+                    <a href="../certificates/other certificate/IBM INTERNSHIP.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="cloud">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Cloud</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">AICTE Virtual Cloud Internship</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">AICTE / Edunet</p>
+                    </div>
+                    <a href="../certificates/other certificate/MUKILAN  K_AICTE_Certificate internship.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="cloud">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Cloud</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">Cloud Systems Development Internship</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Inexus Solutions</p>
+                    </div>
+                    <a href="../certificates/other certificate/Mukilan_k_internship.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <!-- AI Certifications -->
+                <div class="cert-item-card" data-category="ai">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">AI</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">Machine Learning Certification</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Simplilearn</p>
+                    </div>
+                    <a href="../certificates/MUKILAN K -SIMPLILEARN/MUKILAN K - MACHINE LEARING.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="ai">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">AI</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">Data Scientist Certification</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Simplilearn</p>
+                    </div>
+                    <a href="../certificates/MUKILAN K -SIMPLILEARN/MUKILAN K -DATA SCIENTIST.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="ai">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">AI</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">Data Science with Python</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Simplilearn Professional Program</p>
+                    </div>
+                    <a href="../certificates/MUKILAN K -SIMPLILEARN/MUKILAN K,SIMPLILEARN  DATA SCIENCE WITH PYTHON.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="ai">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">AI</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">IBM Python for Data Science</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">IBM (Simplilearn PY0101EN)</p>
+                    </div>
+                    <a href="../certificates/MUKILAN K -SIMPLILEARN/MUKILAN K-IBM PY0101EN Certificate _ Simplilearn.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="ai">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">AI</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">Python Programming Essentials</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Simplilearn</p>
+                    </div>
+                    <a href="../certificates/MUKILAN K -SIMPLILEARN/MUKILAN K-PROGRAMING ESSENTIAL.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="ai">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">AI</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">Python Data Structures &amp; Algorithms</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">NPTEL (IIT Madras)</p>
+                    </div>
+                    <a href="../certificates/other certificate/Programming, Data Structures And Algorithms Using Python.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="ai">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">AI</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">NPTEL Python for Data Science</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">NPTEL / IIT</p>
+                    </div>
+                    <a href="../certificates/other certificate/Python for Data Science nptel.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="ai">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">AI</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">IBM R Programming Certificate</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">IBM RP0101EN</p>
+                    </div>
+                    <a href="../certificates/MUKILAN K -SIMPLILEARN/MUKILAN_K_R_PRO_IBM RP0101EN.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <!-- Analytics Certifications -->
+                <div class="cert-item-card" data-category="analytics">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Analytics</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">Tata Data Visualization Virtual Program</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Tata / Forage</p>
+                    </div>
+                    <a href="../certificates/other certificate/TATA Data VIsualization - MUKILAN K.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="analytics">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Analytics</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">Power BI Analyst Certificate</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Simplilearn</p>
+                    </div>
+                    <a href="../certificates/MUKILAN K -SIMPLILEARN/MUKILAN_K_POWER_BI.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="analytics">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Analytics</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">SQL Core database Certificate</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Simplilearn</p>
+                    </div>
+                    <a href="../certificates/MUKILAN K -SIMPLILEARN/MUKILAN K- SQL.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="analytics">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Analytics</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">Tableau Specialist</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Simplilearn</p>
+                    </div>
+                    <a href="../certificates/MUKILAN K -SIMPLILEARN/tableau.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <!-- Languages -->
+                <div class="cert-item-card" data-category="languages">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Languages</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">JLPT N5 Japanese Proficiency</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Japan Foundation &amp; JEES</p>
+                    </div>
+                    <a href="../certificates/other certificate/MUKILAN_K_JLPT_N5.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <!-- Competitions -->
+                <div class="cert-item-card" data-category="competitions">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Competitions</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">Tech-Expo First Prize Award</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">1st Prize in Project Presentation</p>
+                    </div>
+                    <a href="../certificates/other certificate/TECH-EXPO(1ST PRIZE).pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="competitions">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Competitions</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">GreenHack 2024 Certificate</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Ecological Solutions Hack</p>
+                    </div>
+                    <a href="../certificates/other certificate/GREENHACK.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="competitions">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Competitions</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">UpCycle-24 Hackathon Winner</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Innovative Prototyping Contest</p>
+                    </div>
+                    <a href="../certificates/other certificate/UpCycle-24hackthon (1).pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="competitions">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Competitions</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">Cerebro 14.0 Hackathon</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Technological Innovation Challenge</p>
+                    </div>
+                    <a href="../certificates/other certificate/Cerebro 14.0.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="competitions">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Competitions</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">UI-UX Design Contest</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Visual Interface Design Challenge</p>
+                    </div>
+                    <a href="../certificates/other certificate/UI-UX-CONTEST.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <!-- Workshops -->
+                <div class="cert-item-card" data-category="workshops">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Workshops</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">30-Day Patent Drafting Workshop</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Technical IP drafting credentials</p>
+                    </div>
+                    <a href="../certificates/other certificate/30-day-patentdrafting.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="workshops">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Workshops</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">IBM SkillsBuild Certification</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">IBM Completion Credentials</p>
+                    </div>
+                    <a href="../certificates/other certificate/Completion Certificate _ SkillsBuild.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <!-- Events -->
+                <div class="cert-item-card" data-category="events">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Events</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2025</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">IIC Regional Meet 2025</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Ministry of Education Innovation Cell</p>
+                    </div>
+                    <a href="../certificates/other certificate/iic-regional-meet-2025-84267548.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+
+                <div class="cert-item-card" data-category="events">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="proj-tag-badge">Events</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">2024</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-family: var(--font-heading); font-weight: 700;">KRCT Startup Pitch Event</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Startup Pitch Challenge</p>
+                    </div>
+                    <a href="../certificates/other certificate/KRCT -startUp.pdf" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px; justify-content: center; width: 100%;">View Certificate</a>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="professional-footer">
+        <div class="container footer-layout">
+            <span class="footer-copyright">&copy; 2026 Mukilan K. All rights reserved.</span>
+            <a href="../index.html" class="footer-back-to-top">Return to Profile</a>
+        </div>
+    </footer>
+
+    <!-- Filter JS Script -->
+    <script>
+        // Theme Cache Handshake
+        const body = document.body;
+        const savedTheme = localStorage.getItem('professional-theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-theme');
+        } else {
+            body.classList.remove('dark-theme');
+        }
+
+        const themeBtn = document.getElementById('theme-toggle-btn');
+        if (themeBtn) {
+            themeBtn.addEventListener('click', () => {
+                body.classList.toggle('dark-theme');
+                const isDark = body.classList.contains('dark-theme');
+                localStorage.setItem('professional-theme', isDark ? 'dark' : 'light');
+            });
+        }
+
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.cert-filter-btn');
+        const certCards = document.querySelectorAll('.cert-item-card');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                certCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filterValue === 'all' || category === filterValue) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
