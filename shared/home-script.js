@@ -60,22 +60,27 @@ window.initializeHomepage = function() {
 
 function init3DModel() {
     const viewer = document.getElementById('mascot-3d-model');
-    if (viewer && typeof MODEL_BASE64 !== 'undefined') {
-        try {
-            const parts = MODEL_BASE64.split(',');
-            const mime = parts[0].match(/:(.*?);/)[1];
-            const base64Data = parts[1];
-            const byteCharacters = atob(base64Data);
-            const byteNumbers = new Array(byteCharacters.length);
-            for (let i = 0; i < byteCharacters.length; i++) {
-                byteNumbers[i] = byteCharacters.charCodeAt(i);
+    if (viewer) {
+        if (typeof MODEL_BASE64 !== 'undefined') {
+            try {
+                const parts = MODEL_BASE64.split(',');
+                const mime = parts[0].match(/:(.*?);/)[1];
+                const base64Data = parts[1];
+                const byteCharacters = atob(base64Data);
+                const byteNumbers = new Array(byteCharacters.length);
+                for (let i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                const byteArray = new Uint8Array(byteNumbers);
+                const blob = new Blob([byteArray], {type: mime});
+                const blobUrl = URL.createObjectURL(blob);
+                viewer.src = blobUrl;
+            } catch (e) {
+                console.error("Failed to parse base64 model, falling back to direct load:", e);
+                viewer.src = "../shared/sandrone_rigged_free.glb";
             }
-            const byteArray = new Uint8Array(byteNumbers);
-            const blob = new Blob([byteArray], {type: mime});
-            const blobUrl = URL.createObjectURL(blob);
-            viewer.src = blobUrl;
-        } catch (e) {
-            console.error("Failed to parse base64 model, falling back to direct load:", e);
+        } else {
+            // Direct load over HTTPS if base64 script is not present
             viewer.src = "../shared/sandrone_rigged_free.glb";
         }
     }
